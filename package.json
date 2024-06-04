@@ -1,5 +1,5 @@
 {
-  "name": "eruda",
+  "name": "watone_console",
   "version": "3.0.1",
   "description": "Console for Mobile Browsers",
   "main": "eruda.js",
@@ -83,5 +83,8 @@
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3"
+  },
+  "dependencies": {
+    "shiki": "^1.6.2"
   }
 }

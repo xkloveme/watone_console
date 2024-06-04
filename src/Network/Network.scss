@@ -64,12 +64,13 @@
     padding-top: 40px;
     background: var(--background);
     .control {
-      padding: 10px 35px;
+      padding: 10px 25px;
       border-bottom: 1px solid var(--border);
+      height: auto;
       .url {
         font-size: $font-size-s;
         overflow: hidden;
-        white-space: nowrap;
+        white-space: wrap;
         text-overflow: ellipsis;
         width: 100%;
         display: inline-block;

@@ -50,22 +50,22 @@
       ;(function () {
         let el = document.createElement('div')
         document.body.appendChild(el)
-        setTimeout(function () {
+        // setTimeout(function () {
           try {
             eruda.init({
               container: el,
               useShadowDom: false,
               defaults: {
                 displaySize: 50,
-                transparency: 0.9,
-                theme: 'Monokai Pro',
+                transparency: 1,
+                theme: 'Light',
               },
             })
           } catch (e) {
             alert(e)
           }
-          eruda.show().get().config.set('displaySize', 50)
-        }, 1000)
+          // eruda.show().get().config.set('displaySize', 50)
+        // }, 1000)
       })()
     </script>
   </body>

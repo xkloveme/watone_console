@@ -7,6 +7,7 @@ import copy from 'licia/copy'
 import isJson from 'licia/isJson'
 import Emitter from 'licia/Emitter'
 import truncate from 'licia/truncate'
+import { codeToHtml } from 'shiki'
 import { classPrefix as c } from '../lib/util'
 
 export default class Detail extends Emitter {
@@ -18,7 +19,8 @@ export default class Detail extends Emitter {
     this._detailData = {}
     this._bindEvent()
   }
-  show(data) {
+
+  async show (data) {
     if (data.resTxt && trim(data.resTxt) === '') {
       delete data.resTxt
     }
@@ -60,7 +62,16 @@ export default class Detail extends Emitter {
       if (text.length > MAX_RES_LEN) {
         text = truncate(text, MAX_RES_LEN)
       }
-      resTxt = `<pre class="${c('response')}">${escape(text)}</pre>`
+      const codeHtml = await codeToHtml(text, {
+        lang: 'json5',
+        theme: 'min-light'
+      })
+      // resTxt = `<pre class="${c('response')}">${escape(text)}</pre>`
+      resTxt = codeHtml
+    }
+    // eslint-disable-next-line no-unused-vars
+    const checkboxOnclick = (checkbox) => {
+      console.log(11, checkbox);
     }
 
     const html = `<div class="${c('control')}">
@@ -80,6 +91,14 @@ export default class Detail extends Emitter {
         </table>
       </div>
       <div class="${c('section')}">
+      <h2>Request Data <input type="checkbox" onclick="checkboxOnclick(this)"></h2>
+      <table class="${c('headers')}">
+        <tbody>
+        ${resTxt}
+        </tbody>
+      </table>
+    </div>
+      <div class="${c('section')}">
         <h2>Request Headers</h2>
         <table class="${c('headers')}">
           <tbody>
@@ -87,13 +106,14 @@ export default class Detail extends Emitter {
           </tbody>
         </table>
       </div>
-      ${resTxt}
     </div>`
 
     this._$container.html(html).show()
     this._detailData = data
   }
-  hide() {
+
+
+  hide () {
     this._$container.hide()
     this.emit('hide')
   }
@@ -120,7 +140,7 @@ export default class Detail extends Emitter {
     copy(data)
     this._devtools.notify('Copied')
   }
-  _bindEvent() {
+  _bindEvent () {
     const devtools = this._devtools
 
     this._$container
