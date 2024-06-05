@@ -1,12 +1,9 @@
-<a href="https://eruda.liriliri.io/" target="_blank">
-  <img src="https://eruda.liriliri.io/img/banner.jpg" style="width:100%">
-</a>
 
-<h1 align="center">Eruda</h1>
+<h1 align="center">watone console</h1>
 
 <div align="center">
 
-Console for Mobile Browsers.
+watone Console for Mobile Browsers.
 
 [![NPM version][npm-image]][npm-url]
 [![Build status][ci-image]][ci-url]
@@ -58,7 +55,11 @@ javascript:(function () { var script = document.createElement('script'); script.
 You can get it on npm.
 
 ```bash
-npm install eruda --save
+npm install @watone/console --save
+# or
+pnpm  add @watone/console --save
+# or
+yarn install @watone/console --save
 ```
 
 Add this script to your page.
