@@ -91,6 +91,9 @@ devDependencies:
   licia:
     specifier: ^1.38.2
     version: 1.38.2
+  lsla:
+    specifier: ^1.0.2
+    version: 1.0.2
   luna-box-model:
     specifier: ^0.1.0
     version: 0.1.0
@@ -4721,6 +4724,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
+
+  /lsla@1.0.2:
+    resolution: {integrity: sha512-v/8WYAOoudBJlCTLzzNlea6GgTfUZ8nG4z61+1zJEUC8JI1ivgo9QuMwaue5EJ8U0y7Hk8wT1VUHedYZ2uJBug==}
+    hasBin: true
     dev: true
 
   /luna-box-model@0.1.0:

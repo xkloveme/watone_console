@@ -1,6 +1,6 @@
 {
   "name": "@watone/console",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Watone Console for Mobile Browsers",
   "main": "eruda.js",
   "browserslist": [
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "ci": "npm run lint && npm run test && npm run build && npm run es5",
-    "build": "lsla shx rm -rf dist && webpack --config build/webpack.prod.js && webpack --config build/webpack.polyfill.js && node build/build && lsla shx cp README.md eruda.d.ts dist",
+    "build": "lsla shx rm -rf dist && webpack --config build/webpack.prod.js && webpack --config build/webpack.polyfill.js && node build/build && cp .npmignore README.md eruda.d.ts dist && rm -rf dist/*.eruda.js dist/*.eruda.js.map",
     "build:analyser": "webpack --config build/webpack.analyser.js",
     "dev": "webpack-dev-server --config build/webpack.dev.js --host 0.0.0.0",
     "test": "karma start",
@@ -69,6 +69,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^5.0.0",
     "licia": "^1.38.2",
+    "lsla": "^1.0.2",
     "luna-box-model": "^0.1.0",
     "luna-console": "^1.3.3",
     "luna-data-grid": "^0.5.1",
