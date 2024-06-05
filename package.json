@@ -1,7 +1,7 @@
 {
-  "name": "watone_console",
+  "name": "@watone/console",
   "version": "1.0.1",
-  "description": "Console for Mobile Browsers",
+  "description": "Watone Console for Mobile Browsers",
   "main": "eruda.js",
   "browserslist": [
     "since 2015",
@@ -29,7 +29,7 @@
     "mobile",
     "debug"
   ],
-  "author": "redhoodsu",
+  "author": "xkloveme",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/liriliri/eruda/issues"
