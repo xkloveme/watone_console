@@ -59,7 +59,7 @@ export default class DevTools extends Emitter {
     this._initModal()
 
     ready(() => this._checkSafeArea())
-    this._bindEvent()
+    !defaults.disabledDrag && this._bindEvent()
   }
   show() {
     this._isShow = true
@@ -120,6 +120,7 @@ export default class DevTools extends Emitter {
       })
     }
 
+    console.log(22, this);
     return this
   }
   remove(name) {

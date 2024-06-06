@@ -55,6 +55,8 @@
             eruda.init({
               container: el,
               useShadowDom: false,
+              needbtn: true,
+              tool:['network'],
               defaults: {
                 displaySize: 50,
                 transparency: 1,
@@ -67,6 +69,20 @@
           // eruda.show().get().config.set('displaySize', 50)
         // }, 1000)
       })()
+
+      fetch("https://registry.npmmirror.com/", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "token": "95781f68-a17d-42cb-bf9f-9a9abac2207f"
+  },
+  "referrer": "http://30.207.88.19:31159/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+});
     </script>
   </body>
 </html>

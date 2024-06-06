@@ -62,17 +62,15 @@ export default class Detail extends Emitter {
       if (text.length > MAX_RES_LEN) {
         text = truncate(text, MAX_RES_LEN)
       }
-      const codeHtml = await codeToHtml(text, {
+      const codeHtml = await codeToHtml(JSON.stringify(JSON.parse(text), null, '\t'), {
         lang: 'json5',
         theme: 'min-light'
       })
       // resTxt = `<pre class="${c('response')}">${escape(text)}</pre>`
       resTxt = codeHtml
     }
-    // eslint-disable-next-line no-unused-vars
-    const checkboxOnclick = (checkbox) => {
-      console.log(11, checkbox);
-    }
+
+ 
 
     const html = `<div class="${c('control')}">
       <span class="${c('icon-arrow-left back')}"></span>
@@ -83,15 +81,15 @@ export default class Detail extends Emitter {
     <div class="${c('http')}">
       ${postData}
       <div class="${c('section')}">
-        <h2>Response Headers</h2>
-        <table class="${c('headers')}">
-          <tbody>
-            ${resHeaders}
-          </tbody>
-        </table>
+      <h2>Response Headers</h2>
+      <table class="${c('headers')}">
+      <tbody>
+        ${resHeaders}
+      </tbody>
+    </table>
       </div>
       <div class="${c('section')}">
-      <h2>Request Data <input type="checkbox" onclick="checkboxOnclick(this)"></h2>
+      <h2>Request Data <input type="checkbox" checked class="${c('inputCheck')}">是否解密</h2>
       <table class="${c('headers')}">
         <tbody>
         ${resTxt}
@@ -140,12 +138,17 @@ export default class Detail extends Emitter {
     copy(data)
     this._devtools.notify('Copied')
   }
+     // 定义事件处理函数
+    _checkboxOnclick (event) {
+      console.log(11, event);
+    }
   _bindEvent () {
     const devtools = this._devtools
 
     this._$container
       .on('click', c('.back'), () => this.hide())
-      .on('click', c('.copy-res'), this._copyRes)
+      .on('click', c('.inputCheck'), this._checkboxOnclick)
+      .on('change', c('.copy-res'), this._copyRes)
       .on('click', c('.http .response'), () => {
         const data = this._detailData
         const resTxt = data.resTxt
