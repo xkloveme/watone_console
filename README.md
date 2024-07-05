@@ -1,6 +1,8 @@
-<a href="https://eruda.liriliri.io/" target="_blank">
-  <img src="https://eruda.liriliri.io/img/banner.jpg" style="width:100%">
-</a>
+<div align="center">
+  <a href="https://eruda.liriliri.io/" target="_blank">
+    <img src="https://eruda.liriliri.io/icon.png" width="400">
+  </a>
+</div>
 
 <h1 align="center">Eruda</h1>
 
@@ -28,8 +30,6 @@ Console for Mobile Browsers.
 [donate-image]: https://img.shields.io/badge/$-donate-0070ba.svg?style=flat-square
 
 <img src="https://eruda.liriliri.io/img/screenshot-v3.jpg" style="width:100%">
-
-[中文](README_CN.md)
 
 ## Demo
 
@@ -126,7 +126,7 @@ If you want to create a plugin yourself, follow the guides [here](./doc/PLUGIN.m
 * [chobitsu](https://github.com/liriliri/chobitsu): Chrome devtools protocol JavaScript implementation.
 * [licia](https://github.com/liriliri/licia): Utility library used by eruda.
 * [luna](https://github.com/liriliri/luna): UI components used by eruda.
-* [vivy](https://github.com/liriliri/vivy-docs): Banner image generation.
+* [vivy](https://github.com/liriliri/vivy-docs): Icon image generation.
 
 ## Third Party
 
