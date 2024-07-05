@@ -29,7 +29,7 @@
 [license-image]: https://img.shields.io/npm/l/eruda?style=flat-square
 [donate-image]: https://img.shields.io/badge/$-donate-0070ba.svg?style=flat-square
 
-<img src="https://eruda.liriliri.io/img/screenshot-v3.jpg" style="width:100%">
+<img src="https://eruda.liriliri.io/img/screenshot.jpg" style="width:100%">
 
 ## Demo
 
@@ -120,7 +120,7 @@ eruda.init({
 * [eruda-orientation](https://github.com/liriliri/eruda-orientation)：测试重力感应接口。
 * [eruda-touches](https://github.com/liriliri/eruda-orientation)：可视化屏幕 Touch 事件触发。
 
-如果你想要自己编写插件，可以查看这里的[教程](./PLUGIN.md)。
+如果你想要自己编写插件，可以查看这里的[教程](https://eruda.liriliri.io/docs/plugin.html)。
 
 ## 相关项目
 

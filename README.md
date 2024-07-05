@@ -29,7 +29,7 @@ Console for Mobile Browsers.
 [license-image]: https://img.shields.io/npm/l/eruda?style=flat-square
 [donate-image]: https://img.shields.io/badge/$-donate-0070ba.svg?style=flat-square
 
-<img src="https://eruda.liriliri.io/img/screenshot-v3.jpg" style="width:100%">
+<img src="https://eruda.liriliri.io/img/screenshot.jpg" style="width:100%">
 
 ## Demo
 
@@ -45,13 +45,13 @@ javascript:(function () { var script = document.createElement('script'); script.
 
 ## Features
 
-* [Console](doc/TOOL_API.md#console): Display JavaScript logs.
-* [Elements](doc/TOOL_API.md#elements): Check dom state.
-* [Network](doc/TOOL_API.md#network): Show requests status.
-* [Resources](/doc/TOOL_API.md#resources): Show localStorage, cookie information.
-* [Info](doc/TOOL_API.md#info): Show url, user agent info.
-* [Snippets](doc/TOOL_API.md#snippets): Include snippets used most often.
-* [Sources](doc/TOOL_API.md#sources): Html, js, css source viewer.
+* [Console](https://eruda.liriliri.io/docs/api.html#console): Display JavaScript logs.
+* [Elements](https://eruda.liriliri.io/docs/api.html#elements): Check dom state.
+* [Network](https://eruda.liriliri.io/docs/api.html#network): Show requests status.
+* [Resources](https://eruda.liriliri.io/docs/api.html#resources): Show localStorage, cookie information.
+* [Info](https://eruda.liriliri.io/docs/api.html#info): Show url, user agent info.
+* [Snippets](https://eruda.liriliri.io/docs/api.html#snippets): Include snippets used most often.
+* [Sources](https://eruda.liriliri.io/docs/api.html#sources): Html, js, css source viewer.
 
 ## Install
 
@@ -94,7 +94,7 @@ When initialization, a configuration object can be passed in.
 under html root element.
 * tool: Choose which default tools you want, by default all will be added.
 
-For more information, please check the [documentation](doc/API.md).
+For more information, please check the [documentation](https://eruda.liriliri.io/docs/api.html).
 
 ```javascript
 let el = document.createElement('div');
@@ -117,7 +117,7 @@ eruda.init({
 * [eruda-orientation](https://github.com/liriliri/eruda-orientation): Test orientation api.
 * [eruda-touches](https://github.com/liriliri/eruda-touches): Visualize screen touches.
 
-If you want to create a plugin yourself, follow the guides [here](./doc/PLUGIN.md).
+If you want to create a plugin yourself, follow the guides [here](https://eruda.liriliri.io/docs/plugin.html).
 
 ## Related Projects
 
