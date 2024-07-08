@@ -3,7 +3,7 @@ webpackCfg.devtool = 'inline-source-map'
 webpackCfg.module.rules.push({
   test: /\.js$/,
   exclude: /node_modules|lib\/util\.js/,
-  loader: 'istanbul-instrumenter-loader',
+  loader: '@jsdevtools/coverage-istanbul-loader',
   enforce: 'post',
   options: {
     esModules: true,
