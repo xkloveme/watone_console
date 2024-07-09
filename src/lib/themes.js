@@ -121,7 +121,7 @@ export default {
     background: '#242424',
     foreground: '#a5a5a5',
     selectForeground: '#eaeaea',
-    accent: '#555',
+    accent: '#7cacf8',
     highlight: '#000',
     border: '#3d3d3d',
     primary: '#ccc',
