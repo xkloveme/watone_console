@@ -12,9 +12,12 @@ import Settings from './Settings/Settings'
 import emitter from './lib/emitter'
 import logger from './lib/logger'
 import * as util from './lib/util'
+import { isDarkTheme } from './lib/themes'
+import themes from './lib/themes'
 import isFn from 'licia/isFn'
 import isNum from 'licia/isNum'
 import isObj from 'licia/isObj'
+import each from 'licia/each'
 import isMobile from 'licia/isMobile'
 import viewportScale from 'licia/viewportScale'
 import detectBrowser from 'licia/detectBrowser'
@@ -22,6 +25,7 @@ import $ from 'licia/$'
 import toArr from 'licia/toArr'
 import upperFirst from 'licia/upperFirst'
 import nextTick from 'licia/nextTick'
+import isEqual from 'licia/isEqual'
 import extend from 'licia/extend'
 import evalCss from './lib/evalCss'
 import chobitsu from './lib/chobitsu'
@@ -51,7 +55,28 @@ export default {
   },
   _isInit: false,
   version: VERSION,
-  util,
+  util: {
+    isErudaEl: util.isErudaEl,
+    evalCss,
+    isDarkTheme(theme) {
+      if (!theme) {
+        theme = this.getTheme()
+      }
+      return isDarkTheme(theme)
+    },
+    getTheme: () => {
+      const curTheme = evalCss.getCurTheme()
+
+      let result = 'Light'
+      each(themes, (theme, name) => {
+        if (isEqual(theme, curTheme)) {
+          result = name
+        }
+      })
+
+      return result
+    },
+  },
   chobitsu,
   Tool,
   Console,

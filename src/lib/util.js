@@ -9,7 +9,6 @@ import root from 'licia/root'
 import toNum from 'licia/toNum'
 import trim from 'licia/trim'
 import html from 'licia/html'
-import evalCssUtil from './evalCss'
 
 // https://stackoverflow.com/questions/46318395/detecting-mobile-device-notch
 export function hasSafeArea() {
@@ -107,8 +106,6 @@ export function isChobitsuEl(el) {
 
   return false
 }
-
-export const evalCss = evalCssUtil
 
 export function classPrefix(str) {
   if (/<[^>]*>/g.test(str)) {

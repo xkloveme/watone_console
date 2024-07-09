@@ -50,7 +50,7 @@ declare module 'eruda' {
 
   /**
    * Eruda Plugin
-   * @see https://github.com/liriliri/eruda/blob/master/doc/PLUGIN.md
+   * @see https://eruda.liriliri.io/docs/plugin.html
    */
   export interface Tool {
     /**
@@ -389,16 +389,18 @@ declare module 'eruda' {
 
   /**
    * Eruda Util
-   * @see https://github.com/liriliri/eruda/blob/master/doc/UTIL_API.md
+   * @see https://eruda.liriliri.io/docs/plugin.html#utility
    */
   export interface Util {
     evalCss(css: string): HTMLStyleElement
     isErudaEl(val: any): boolean
+    isDarkTheme(theme?: string): boolean
+    getTheme(): string
   }
 
   /**
    * Eruda APIs
-   * @see https://github.com/liriliri/eruda/blob/master/doc/API.md
+   * @see https://eruda.liriliri.io/docs/api.html
    */
   export interface ErudaApis {
     /**
