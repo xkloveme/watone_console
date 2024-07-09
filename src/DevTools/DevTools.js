@@ -37,7 +37,7 @@ export default class DevTools extends Emitter {
       {
         transparency: 1,
         displaySize: 80,
-        theme: isDarkMode() ? 'Dark' : 'Light',
+        theme: 'System preference',
       },
       defaults
     )
@@ -197,7 +197,10 @@ export default class DevTools extends Emitter {
 
     settings
       .separator()
-      .select(cfg, 'theme', 'Theme', keys(evalCss.getThemes()))
+      .select(cfg, 'theme', 'Theme', [
+        'System preference',
+        ...keys(evalCss.getThemes()),
+      ])
       .range(cfg, 'transparency', 'Transparency', {
         min: 0.2,
         max: 1,
@@ -248,6 +251,10 @@ export default class DevTools extends Emitter {
   }
   _setTheme(theme) {
     const { $container } = this
+
+    if (theme === 'System preference') {
+      theme = isDarkMode() ? 'Dark' : 'Light'
+    }
 
     if (isDarkTheme(theme)) {
       $container.addClass(c('dark'))
