@@ -1,3 +1,10 @@
+## 3.1.0 (9 JUL 2023)
+
+* feat: add AMOLED theme [#414](https://github.com/liriliri/eruda/pull/414)
+* feat: support system preference theme config
+* feat: add isDarkTheme, getTheme util
+* fix: backers.svg lazy loading [#407](https://github.com/liriliri/eruda/issues/407)
+
 ## 3.0.1 (18 JUL 2023)
 
 * fix: can not print string with %o [#336](https://github.com/liriliri/eruda/issues/336)
