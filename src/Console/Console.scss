@@ -10,8 +10,8 @@
     padding-bottom: 0;
   }
   .control {
-    @include control();
     padding: 10px 10px 10px 35px;
+    @include control();
     .icon-clear {
       padding-right: 0px;
       left: 0;
@@ -96,10 +96,10 @@
         border-right: 1px solid var(--border);
         height: 40px;
         line-height: 40px;
+        transition: background-color $anim-duration, color $anim-duration;
         &:last-child {
           border-right: none;
         }
-        transition: background-color $anim-duration, color $anim-duration;
         &:active {
           color: var(--select-foreground);
           background: var(--highlight);
