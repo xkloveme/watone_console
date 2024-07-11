@@ -58,7 +58,7 @@ javascript:(function () { var script = document.createElement('script'); script.
 You can get it on npm.
 
 ```bash
-npm install eruda --save
+npm install eruda --save-dev
 ```
 
 Add this script to your page.
@@ -84,6 +84,14 @@ The JavaScript file size is quite huge(about 100kb gzipped) and therefore not su
     document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
     document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
 })();
+```
+
+If you are using modern JavaScript tooling, you can dynamically import it.
+
+```javascript
+if (import.meta.env.MODE === 'development') {
+    import('eruda').then(eruda => eruda.default.init());
+}
 ```
 
 ## Configuration
