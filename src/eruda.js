@@ -48,7 +48,7 @@ export default {
 
     this._initContainer(container, useShadowDom)
     this._initStyle()
-    this._initDevTools(defaults)
+    this._initDevTools(defaults, inline)
     this._initEntryBtn()
     this._initSettings()
     this._initTools(tool)
@@ -239,9 +239,10 @@ export default {
 
     this._$el = $(el)
   },
-  _initDevTools(defaults) {
+  _initDevTools(defaults, inline) {
     this._devTools = new DevTools(this._$el, {
       defaults,
+      inline,
     })
   },
   _initStyle() {

@@ -30,7 +30,7 @@ import {
 } from '../lib/util'
 
 export default class DevTools extends Emitter {
-  constructor($container, { defaults = {} } = {}) {
+  constructor($container, { defaults = {}, inline = false } = {}) {
     super()
 
     this._defCfg = extend(
@@ -52,6 +52,7 @@ export default class DevTools extends Emitter {
     this._resizeTimer = null
     this._resizeStartY = 0
     this._resizeStartSize = 0
+    this._inline = inline
 
     this._initTpl()
     this._initTab()
@@ -201,16 +202,22 @@ export default class DevTools extends Emitter {
         'System preference',
         ...keys(evalCss.getThemes()),
       ])
-      .range(cfg, 'transparency', 'Transparency', {
-        min: 0.2,
-        max: 1,
-        step: 0.01,
-      })
-      .range(cfg, 'displaySize', 'Display Size', {
-        min: 40,
-        max: 100,
-        step: 1,
-      })
+
+    if (!this._inline) {
+      settings
+        .range(cfg, 'transparency', 'Transparency', {
+          min: 0.2,
+          max: 1,
+          step: 0.01,
+        })
+        .range(cfg, 'displaySize', 'Display Size', {
+          min: 40,
+          max: 100,
+          step: 1,
+        })
+    }
+
+    settings
       .button('Restore defaults and reload', function () {
         const store = safeStorage('local')
 
@@ -270,6 +277,10 @@ export default class DevTools extends Emitter {
     if (this._isShow) this._$el.css({ opacity })
   }
   _setDisplaySize(height) {
+    if (this._inline) {
+      height = 100
+    }
+
     if (!isNum(height)) return
 
     this._$el.css({ height: height + '%' })
@@ -322,6 +333,10 @@ export default class DevTools extends Emitter {
     const $resizer = this._$el.find(c('.resizer'))
     const $navBar = this._$el.find(c('.nav-bar'))
     const $document = $(document)
+
+    if (this._inline) {
+      $resizer.hide()
+    }
 
     const startListener = (e) => {
       e.preventDefault()
