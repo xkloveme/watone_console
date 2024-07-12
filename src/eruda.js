@@ -215,7 +215,8 @@ export default {
             require('luna-console/luna-console.css') +
             require('luna-object-viewer/luna-object-viewer.css') +
             require('luna-dom-viewer/luna-dom-viewer.css') +
-            require('luna-text-viewer/luna-text-viewer.css')
+            require('luna-text-viewer/luna-text-viewer.css') +
+            require('luna-notification/luna-notification.css')
         )
 
         el = document.createElement('div')

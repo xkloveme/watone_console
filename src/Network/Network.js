@@ -232,7 +232,7 @@ export default class Network extends Tool {
       })
     )
 
-    this._container.notify('Copied')
+    this._container.notify('Copied', { icon: 'success' })
   }
   _updateButtons() {
     const $control = this._$control

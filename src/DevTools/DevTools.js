@@ -78,6 +78,10 @@ export default class DevTools extends Emitter {
     return this
   }
   hide() {
+    if (this._inline) {
+      return
+    }
+
     this._isShow = false
     this.emit('hide')
 
