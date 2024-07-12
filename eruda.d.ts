@@ -36,6 +36,10 @@ declare module 'eruda' {
      */
     useShadowDom?: boolean
     /**
+     * Enable inline mode
+     */
+    inline?: boolean
+    /**
      * Default settings
      */
     defaults?: InitDefaults

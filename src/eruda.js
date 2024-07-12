@@ -36,9 +36,12 @@ export default {
     tool,
     autoScale = true,
     useShadowDom = true,
+    inline = false,
     defaults = {},
   } = {}) {
-    if (this._isInit) return
+    if (this._isInit) {
+      return
+    }
 
     this._isInit = true
     this._scale = 1
@@ -51,7 +54,14 @@ export default {
     this._initTools(tool)
     this._registerListener()
 
-    if (autoScale) this._autoScale()
+    if (autoScale) {
+      this._autoScale()
+    }
+    if (inline) {
+      this._entryBtn.hide()
+      this._$el.addClass('eruda-inline')
+      this.show()
+    }
   },
   _isInit: false,
   version: VERSION,

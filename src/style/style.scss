@@ -43,6 +43,12 @@
       font-weight: normal;
     }
   }
+  &.inline {
+    position: static;
+    .dev-tools {
+      height: 100% !important;
+    }
+  }
 }
 
 .hidden {
