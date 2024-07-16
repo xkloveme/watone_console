@@ -101,15 +101,18 @@ export default class DevTools extends Emitter {
       defaults(tool, { init, show, hide, destroy })
     }
 
-    let name = tool.name
-    if (!name) return logger.error('You must specify a name for a tool')
-    name = name.toLowerCase()
-    if (this._tools[name]) return logger.warn(`Tool ${name} already exists`)
+    const name = tool.name
+    if (!name) {
+      return logger.error('You must specify a name for a tool')
+    }
 
-    this._$tools.prepend(
-      `<div id="${c(name)}" class="${c(name + ' tool')}"></div>`
-    )
-    tool.init(this._$tools.find(`.${c(name)}.${c('tool')}`), this)
+    if (this._tools[name]) {
+      return logger.warn(`Tool ${name} already exists`)
+    }
+
+    const id = name.replace(/\s+/g, '-')
+    this._$tools.prepend(`<div id="${c(id)}" class="${c(id + ' tool')}"></div>`)
+    tool.init(this._$tools.find(`.${c(id)}.${c('tool')}`), this)
     tool.active = false
     this._tools[name] = tool
 
@@ -155,7 +158,9 @@ export default class DevTools extends Emitter {
     if (tool) return tool
   }
   showTool(name) {
-    if (this._curTool === name) return this
+    if (this._curTool === name) {
+      return this
+    }
     this._curTool = name
 
     const tools = this._tools
