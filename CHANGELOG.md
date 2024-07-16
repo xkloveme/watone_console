@@ -1,4 +1,11 @@
-## 3.1.0 (9 JUL 2023)
+## 3.2.0 (16 JUL 2024)
+
+* feat: support inline mode
+* fix: some typescript d.ts mistakes
+* chore: remove elements set api
+* chore: update monitor plugin version
+
+## 3.1.0 (9 JUL 2024)
 
 * feat: add AMOLED theme [#414](https://github.com/liriliri/eruda/pull/414)
 * feat: support system preference theme config
