@@ -228,6 +228,7 @@ export default class Sources extends Tool {
       {
         unenumerable: true,
         accessGetter: true,
+        prototype: false,
       }
     )
     objViewer.set(val)
