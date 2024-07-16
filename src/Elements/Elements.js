@@ -67,10 +67,6 @@ export default class Elements extends Tool {
 
     chobitsu.domain('Overlay').hideHighlight()
   }
-  // To be removed in 3.0.0
-  set(node) {
-    return this.select(node)
-  }
   select(node) {
     this._domViewer.select(node)
     this._setNode(node)
