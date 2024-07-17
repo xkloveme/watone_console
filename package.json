@@ -1,6 +1,6 @@
 {
   "name": "@watone/console",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Watone Console for Mobile Browsers",
   "main": "eruda.js",
   "browserslist": [
@@ -57,6 +57,7 @@
     "eslint": "^6.8.0",
     "eslint-loader": "^3.0.3",
     "eustia-module": "^1.30.0",
+    "gm-crypto": "^0.1.12",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.99.1",
     "jasmine-jquery": "^2.1.1",
@@ -90,8 +91,5 @@
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3"
-  },
-  "dependencies": {
-    "gm-crypto": "^0.1.12"
   }
 }
