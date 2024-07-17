@@ -7,15 +7,16 @@ import copy from 'licia/copy'
 import isJson from 'licia/isJson'
 import Emitter from 'licia/Emitter'
 import truncate from 'licia/truncate'
-import { codeToHtml } from 'shiki'
+import { decrypt } from './jsencrypt'
+
 import { classPrefix as c } from '../lib/util'
 
 export default class Detail extends Emitter {
-  constructor($container, devtools) {
+  constructor($container, devtools, token) {
     super()
     this._$container = $container
     this._devtools = devtools
-
+    this._token = token
     this._detailData = {}
     this._bindEvent()
   }
@@ -57,20 +58,29 @@ export default class Detail extends Emitter {
     }
 
     let resTxt = ''
+    let resTxtjiemi = ''
     if (data.resTxt) {
       let text = data.resTxt
       if (text.length > MAX_RES_LEN) {
         text = truncate(text, MAX_RES_LEN)
       }
-      const codeHtml = await codeToHtml(JSON.stringify(JSON.parse(text), null, '\t'), {
-        lang: 'json5',
-        theme: 'min-light'
-      })
-      // resTxt = `<pre class="${c('response')}">${escape(text)}</pre>`
-      resTxt = codeHtml
-    }
+      // const codeHtml = await codeToHtml(JSON.stringify(JSON.parse(text), null, '\t'), {
+      //   lang: 'json5',
+      //   theme: 'min-light'
+      // })
+      resTxt = `<pre class="${c('response')}">${escape(text)}</pre>`
+      // resTxt = codeHtml
 
- 
+
+      let newCode = decrypt(text.replace(/['"“‘]/g, ''), this._token)
+      try {
+        newCode = JSON.parse(newCode)
+      } catch (error) {
+        newCode = newCode
+      }
+      resTxtjiemi = `<pre class="${c('response')}">${escape(newCode)}</pre>`
+
+    }
 
     const html = `<div class="${c('control')}">
       <span class="${c('icon-arrow-left back')}"></span>
@@ -89,10 +99,16 @@ export default class Detail extends Emitter {
     </table>
       </div>
       <div class="${c('section')}">
-      <h2>Request Data <input type="checkbox" checked class="${c('inputCheck')}">是否解密</h2>
+      <h2>响应数据</h2>
       <table class="${c('headers')}">
         <tbody>
         ${resTxt}
+        </tbody>
+      </table>
+      <h2>解密数据</h2>
+      <table class="${c('headers')}">
+        <tbody>
+        ${resTxtjiemi}
         </tbody>
       </table>
     </div>
@@ -138,10 +154,10 @@ export default class Detail extends Emitter {
     copy(data)
     this._devtools.notify('Copied')
   }
-     // 定义事件处理函数
-    _checkboxOnclick (event) {
-      console.log(11, event);
-    }
+  // 定义事件处理函数
+  _checkboxOnclick (event) {
+    console.log(11, event);
+  }
   _bindEvent () {
     const devtools = this._devtools
 
@@ -186,4 +202,4 @@ export default class Detail extends Emitter {
   }
 }
 
-const MAX_RES_LEN = 100000
+const MAX_RES_LEN = 1000000

@@ -16,5 +16,7 @@ module.exports = {
   rules: {
     quotes: ['error', 'single'],
     'prefer-const': 2,
+    'no-self-assign': 'off',
+    'no-unused-vars': 'off',
   },
 }

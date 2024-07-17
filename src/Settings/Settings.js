@@ -68,6 +68,14 @@ export default class Settings extends Tool {
 
     return this
   }
+  input(config, key, desc) {
+    const id = this._genId()
+
+    const item = this._setting.appendInput(id, config.get(key), desc)
+    this._settings.push({ config, key, id, item })
+
+    return this
+  }
   select(config, key, desc, selections) {
     const id = this._genId()
 

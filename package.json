@@ -92,6 +92,6 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
-    "shiki": "^1.6.2"
+    "gm-crypto": "^0.1.12"
   }
 }

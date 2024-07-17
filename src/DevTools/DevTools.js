@@ -61,7 +61,7 @@ export default class DevTools extends Emitter {
     ready(() => this._checkSafeArea())
     !defaults.disabledDrag && this._bindEvent()
   }
-  show() {
+  show () {
     this._isShow = true
 
     this._$el.show()
@@ -76,7 +76,7 @@ export default class DevTools extends Emitter {
 
     return this
   }
-  hide() {
+  hide () {
     this._isShow = false
     this.emit('hide')
 
@@ -85,10 +85,10 @@ export default class DevTools extends Emitter {
 
     return this
   }
-  toggle() {
+  toggle () {
     return this._isShow ? this.hide() : this.show()
   }
-  add(tool) {
+  add (tool) {
     const tab = this._tab
 
     if (!(tool instanceof Tool)) {
@@ -119,11 +119,9 @@ export default class DevTools extends Emitter {
         title: name,
       })
     }
-
-    console.log(22, this);
     return this
   }
-  remove(name) {
+  remove (name) {
     const tools = this._tools
 
     if (!tools[name]) return logger.warn(`Tool ${name} doesn't exist`)
@@ -140,17 +138,17 @@ export default class DevTools extends Emitter {
 
     return this
   }
-  removeAll() {
+  removeAll () {
     each(this._tools, (tool) => this.remove(tool.name))
 
     return this
   }
-  get(name) {
+  get (name) {
     const tool = this._tools[name]
 
     if (tool) return tool
   }
-  showTool(name) {
+  showTool (name) {
     if (this._curTool === name) return this
     this._curTool = name
 
@@ -178,7 +176,7 @@ export default class DevTools extends Emitter {
 
     return this
   }
-  initCfg(settings) {
+  initCfg (settings) {
     const cfg = (this.config = Settings.createCfg('dev-tools', this._defCfg))
 
     this._setTransparency(cfg.get('transparency'))
@@ -197,6 +195,8 @@ export default class DevTools extends Emitter {
     })
 
     settings
+      .separator()
+      .input(cfg, 'token', '请输入TOKEN')
       .separator()
       .select(cfg, 'theme', 'Theme', keys(evalCss.getThemes()))
       .range(cfg, 'transparency', 'Transparency', {
@@ -227,10 +227,10 @@ export default class DevTools extends Emitter {
       })
       .separator()
   }
-  notify(content, options) {
+  notify (content, options) {
     this._notification.notify(content, options)
   }
-  destroy() {
+  destroy () {
     evalCss.remove(this._style)
     this.removeAll()
     this._tab.destroy()
@@ -247,7 +247,7 @@ export default class DevTools extends Emitter {
       $container.rmClass(c('safe-area'))
     }
   }
-  _setTheme(theme) {
+  _setTheme (theme) {
     const { $container } = this
 
     if (isDarkTheme(theme)) {
@@ -257,18 +257,18 @@ export default class DevTools extends Emitter {
     }
     evalCss.setTheme(theme)
   }
-  _setTransparency(opacity) {
+  _setTransparency (opacity) {
     if (!isNum(opacity)) return
 
     this._opacity = opacity
     if (this._isShow) this._$el.css({ opacity })
   }
-  _setDisplaySize(height) {
+  _setDisplaySize (height) {
     if (!isNum(height)) return
 
     this._$el.css({ height: height + '%' })
   }
-  _initTpl() {
+  _initTpl () {
     const $container = this.$container
 
     $container.append(
@@ -286,7 +286,7 @@ export default class DevTools extends Emitter {
     this._$el = $container.find(c('.dev-tools'))
     this._$tools = this._$el.find(c('.tools'))
   }
-  _initTab() {
+  _initTab () {
     this._tab = new LunaTab(this._$el.find(c('.tab')).get(0), {
       height: 40,
     })
@@ -298,7 +298,7 @@ export default class DevTools extends Emitter {
       this._tab.updateSlider()
     })
   }
-  _initNotification() {
+  _initNotification () {
     this._notification = new LunaNotification(
       this._$el.find(c('.notification')).get(0),
       {
@@ -309,10 +309,10 @@ export default class DevTools extends Emitter {
       }
     )
   }
-  _initModal() {
+  _initModal () {
     LunaModal.setContainer(this._$el.find(c('.modal')).get(0))
   }
-  _bindEvent() {
+  _bindEvent () {
     const $resizer = this._$el.find(c('.resizer'))
     const $navBar = this._$el.find(c('.nav-bar'))
     const $document = $(document)

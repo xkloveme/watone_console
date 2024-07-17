@@ -19,24 +19,29 @@ import trim from 'licia/trim'
 import isNull from 'licia/isNull'
 import LunaModal from 'luna-modal'
 import { curlStr } from './util'
-
 export default class Network extends Tool {
   constructor() {
     super()
 
     this._style = evalCss(require('./Network.scss'))
-
+    this._token = ''
     this.name = 'network'
     this._requests = {}
     this._selectedRequest = null
     this._isRecording = true
   }
-  init($el, container) {
+  init ($el, container) {
     super.init($el)
-
     this._container = container
     this._initTpl()
-    this._detail = new Detail(this._$detail, container)
+    const settings = this._container.get('settings')
+    settings._settings.map(itemDom => {
+      if (itemDom.key === 'token') {
+        this._token = itemDom.item.value
+        this._detail = new Detail(this._$detail, container, this._token)
+      }
+    })
+    // this._detail = new Detail(this._$detail, container, this._token)
     this._splitMediaQuery = new MediaQuery('screen and (min-width: 680px)')
     this._splitMode = this._splitMediaQuery.isMatch()
     this._requestDataGrid = new LunaDataGrid(this._$requests.get(0), {
@@ -82,22 +87,23 @@ export default class Network extends Tool {
     this._resizeSensor = new ResizeSensor($el.get(0))
     this._bindEvent()
   }
-  show() {
+
+  show () {
     super.show()
     this._updateDataGridHeight()
   }
-  clear() {
+  clear () {
     this._requests = {}
     this._requestDataGrid.clear()
   }
-  requests() {
+  requests () {
     const ret = []
     each(this._requests, (request) => {
       ret.push(request)
     })
     return ret
   }
-  _updateDataGridHeight() {
+  _updateDataGridHeight () {
     const height = this._$el.offset().height - this._$control.offset().height
     this._requestDataGrid.setOption({
       minHeight: height,
@@ -160,7 +166,7 @@ export default class Network extends Tool {
     this._updateType(request)
     request.render()
   }
-  _updateType(request) {
+  _updateType (request) {
     const contentType = request.resHeaders['content-type'] || ''
     const { type, subType } = getType(contentType)
     request.type = type
@@ -209,13 +215,13 @@ export default class Network extends Tool {
     copy(
       curlStr({
         requestMethod: request.method,
-        url() {
+        url () {
           return request.url
         },
-        requestFormData() {
+        requestFormData () {
           return request.data
         },
-        requestHeaders() {
+        requestHeaders () {
           const reqHeaders = request.reqHeaders || {}
           extend(reqHeaders, {
             'User-Agent': navigator.userAgent,
@@ -234,7 +240,7 @@ export default class Network extends Tool {
 
     this._container.notify('Copied')
   }
-  _updateButtons() {
+  _updateButtons () {
     const $control = this._$control
     const $showDetail = $control.find(c('.show-detail'))
     const $copyCurl = $control.find(c('.copy-curl'))
@@ -260,7 +266,7 @@ export default class Network extends Tool {
       this._detail.show(this._selectedRequest)
     }
   }
-  _bindEvent() {
+  _bindEvent () {
     const $control = this._$control
     const $filterText = this._$filterText
     const requestDataGrid = this._requestDataGrid
@@ -328,7 +334,7 @@ export default class Network extends Tool {
   _updateScale = (scale) => {
     this._splitMediaQuery.setQuery(`screen and (min-width: ${680 * scale}px)`)
   }
-  destroy() {
+  destroy () {
     super.destroy()
 
     this._resizeSensor.destroy()
@@ -343,7 +349,7 @@ export default class Network extends Tool {
 
     emitter.off(emitter.SCALE, this._updateScale)
   }
-  _initTpl() {
+  _initTpl () {
     const $el = this._$el
     $el.html(
       c(`<div class="network">
