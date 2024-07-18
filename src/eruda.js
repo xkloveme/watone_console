@@ -31,7 +31,7 @@ import evalCss from './lib/evalCss'
 import chobitsu from './lib/chobitsu'
 
 export default {
-  init ({
+  init({
     container,
     tool,
     autoScale = true,
@@ -51,7 +51,7 @@ export default {
     this._initDevTools(defaults, inline)
     this._initEntryBtn()
     this._initSettings()
-    this._initTools(tool, fullScreen)
+    this._initTools(tool)
     this._registerListener()
 
     if (autoScale) {
@@ -97,7 +97,7 @@ export default {
   Info,
   Snippets,
   Settings,
-  get (name) {
+  get(name) {
     if (!this._checkInit()) return
 
     if (name === 'entryBtn') return this._entryBtn
@@ -106,7 +106,7 @@ export default {
 
     return name ? devTools.get(name) : devTools
   },
-  add (tool) {
+  add(tool) {
     if (!this._checkInit()) return
 
     if (isFn(tool)) tool = tool(this)
@@ -115,12 +115,12 @@ export default {
 
     return this
   },
-  remove (name) {
+  remove(name) {
     this._devTools.remove(name)
 
     return this
   },
-  show (name) {
+  show(name) {
     if (!this._checkInit()) return
 
     const devTools = this._devTools
@@ -129,14 +129,14 @@ export default {
 
     return this
   },
-  hide () {
+  hide() {
     if (!this._checkInit()) return
 
     this._devTools.hide()
 
     return this
   },
-  destroy () {
+  destroy() {
     this._devTools.destroy()
     delete this._devTools
     this._entryBtn.destroy()
@@ -148,7 +148,7 @@ export default {
     this._container = null
     this._shadowRoot = null
   },
-  scale (s) {
+  scale(s) {
     if (isNum(s)) {
       this._scale = s
       emitter.emit(emitter.SCALE, s)
@@ -157,7 +157,7 @@ export default {
 
     return this._scale
   },
-  position (p) {
+  position(p) {
     const entryBtn = this._entryBtn
 
     if (isObj(p)) {
@@ -167,12 +167,12 @@ export default {
 
     return entryBtn.getPos()
   },
-  _autoScale () {
+  _autoScale() {
     if (!isMobile()) return
 
     this.scale(1 / viewportScale())
   },
-  _registerListener () {
+  _registerListener() {
     this._addListener = (...args) => this.add(...args)
     this._showListener = (...args) => this.show(...args)
 
@@ -180,16 +180,16 @@ export default {
     emitter.on(emitter.SHOW, this._showListener)
     emitter.on(emitter.SCALE, evalCss.setScale)
   },
-  _unregisterListener () {
+  _unregisterListener() {
     emitter.off(emitter.ADD, this._addListener)
     emitter.off(emitter.SHOW, this._showListener)
     emitter.off(emitter.SCALE, evalCss.setScale)
   },
-  _checkInit () {
+  _checkInit() {
     if (!this._isInit) logger.error('Please call "eruda.init()" first')
     return this._isInit
   },
-  _initContainer (container, useShadowDom) {
+  _initContainer(container, useShadowDom) {
     if (!container) {
       container = document.createElement('div')
       document.documentElement.appendChild(container)
@@ -246,7 +246,7 @@ export default {
       inline,
     })
   },
-  _initStyle () {
+  _initStyle() {
     const className = 'eruda-style-container'
     const $el = this._$el
 
@@ -260,48 +260,48 @@ export default {
 
     evalCss(
       require('./style/reset.scss') +
-      require('luna-object-viewer/luna-object-viewer.css') +
-      require('luna-console/luna-console.css') +
-      require('luna-notification/luna-notification.css') +
-      require('luna-data-grid/luna-data-grid.css') +
-      require('luna-dom-viewer/luna-dom-viewer.css') +
-      require('luna-modal/luna-modal.css') +
-      require('luna-tab/luna-tab.css') +
-      require('luna-text-viewer/luna-text-viewer.css') +
-      require('luna-setting/luna-setting.css') +
-      require('luna-box-model/luna-box-model.css') +
-      require('./style/style.scss') +
-      require('./style/icon.css')
+        require('luna-object-viewer/luna-object-viewer.css') +
+        require('luna-console/luna-console.css') +
+        require('luna-notification/luna-notification.css') +
+        require('luna-data-grid/luna-data-grid.css') +
+        require('luna-dom-viewer/luna-dom-viewer.css') +
+        require('luna-modal/luna-modal.css') +
+        require('luna-tab/luna-tab.css') +
+        require('luna-text-viewer/luna-text-viewer.css') +
+        require('luna-setting/luna-setting.css') +
+        require('luna-box-model/luna-box-model.css') +
+        require('./style/style.scss') +
+        require('./style/icon.css')
     )
   },
-  _initEntryBtn () {
+  _initEntryBtn() {
     this._entryBtn = new EntryBtn(this._$el)
     this._entryBtn.on('click', () => this._devTools.toggle())
   },
-  _initSettings () {
+  _initSettings() {
     const devTools = this._devTools
     const settings = new Settings()
 
     devTools.add(settings)
 
-    this._entryBtn?.initCfg(settings)
+    this._entryBtn.initCfg(settings)
     devTools.initCfg(settings)
   },
-  _initTools (
+  _initTools(
     tool = [
-      'network',
       'console',
       'elements',
+      'network',
       'resources',
       'sources',
       'info',
       'snippets',
-    ], fullScreen
+    ]
   ) {
     tool = toArr(tool)
 
     const devTools = this._devTools
-    fullScreen && this._devTools.show()
+
     tool.forEach((name) => {
       const Tool = this[upperFirst(name)]
       try {

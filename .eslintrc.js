@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     quotes: 'off',
     'prefer-const': 'off',
+    'no-undef': 'off',
     'no-self-assign': 'off',
     'no-self-assign': 'off',
     'no-unused-vars': 'off',
