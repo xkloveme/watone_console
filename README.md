@@ -7,7 +7,7 @@ watone Console for Mobile Browsers.
 
 
 ```javascript
-javascript:(function () { var script = document.createElement('script'); script.src="https://cdn.jsdelivr.net/npm/@watone/console@1.0.1/eruda.js"; document.body.append(script); script.onload = function () { eruda.init(); } })();
+javascript:(function () { var script = document.createElement('script'); script.src="https://cdn.jsdelivr.net/npm/@watone/console"; document.body.append(script); script.onload = function () { eruda.init(); } })();
 ```
 
 ## Features
@@ -35,14 +35,14 @@ yarn install @watone/console --save
 Add this script to your page.
 
 ```html
-<script src="node_modules/eruda/eruda.js"></script>
+<script src="node_modules/@watone/console/eruda.js"></script>
 <script>eruda.init();</script>
 ```
 
-It's also available on [jsDelivr](http://www.jsdelivr.com/projects/eruda) and [cdnjs](https://cdnjs.com/libraries/eruda).
+It's also available on [jsDelivr](https://www.jsdelivr.com/package/npm/@watone/console)
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script src="//cdn.jsdelivr.net/npm/@watone/console"></script>
 <script>eruda.init();</script>
 ```
 
@@ -50,7 +50,7 @@ The JavaScript file size is quite huge(about 100kb gzipped) and therefore not su
 
 ```javascript
 ;(function () {
-    var src = '//cdn.jsdelivr.net/npm/eruda';
+    var src = '//cdn.jsdelivr.net/npm/@watone/console';
     if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
     document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
     document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
