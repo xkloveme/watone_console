@@ -59,7 +59,6 @@
     "eslint-loader": "^3.0.3",
     "eustia-module": "^1.30.0",
     "gm-crypto": "^0.1.12",
-    "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.99.1",
     "jasmine-jquery": "^2.1.1",
     "jquery": "^3.4.1",
