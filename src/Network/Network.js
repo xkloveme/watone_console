@@ -95,6 +95,14 @@ export default class Network extends Tool {
   clear () {
     this._requests = {}
     this._requestDataGrid.clear()
+
+    const settings = this._container.get('settings')
+    settings._settings.map(itemDom => {
+      if (itemDom.key === 'token') {
+        this._token = itemDom.item.value
+        this._detail = new Detail(this._$detail, this._container, this._token)
+      }
+    })
   }
   requests () {
     const ret = []

@@ -1,6 +1,6 @@
 {
   "name": "@watone/console",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Watone Console for Mobile Browsers",
   "main": "eruda.js",
   "browserslist": [
