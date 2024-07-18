@@ -20,7 +20,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build eruda
         run: |
-          npm i -g @liriliri/lsla
           npm i
           npm run build
       - name: Publish package on NPM
