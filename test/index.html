@@ -56,8 +56,9 @@
               container: el,
               useShadowDom: false,
               needbtn: true,
-              tool:['network'],
+              tool:['network','sources'],
               defaults: {
+                token:'11',
                 displaySize: 50,
                 transparency: 1,
                 theme: 'Light',
@@ -70,7 +71,7 @@
         // }, 1000)
       })()
 
-      fetch("https://registry.npmmirror.com/", {
+      fetch("https://apifoxmock.com/m1/3887569-3521793-default/demo", {
   "headers": {
     "accept": "application/json, text/plain, */*",
     "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",

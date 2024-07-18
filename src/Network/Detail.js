@@ -64,22 +64,12 @@ export default class Detail extends Emitter {
       if (text.length > MAX_RES_LEN) {
         text = truncate(text, MAX_RES_LEN)
       }
-      // const codeHtml = await codeToHtml(JSON.stringify(JSON.parse(text), null, '\t'), {
-      //   lang: 'json5',
-      //   theme: 'min-light'
-      // })
       resTxt = `<pre class="${c('response')}">${escape(text)}</pre>`
-      // resTxt = codeHtml
 
 
       let newCode = decrypt(text.replace(/['"“‘]/g, ''), this._token)
-      try {
-        newCode = JSON.parse(newCode)
-      } catch (error) {
-        newCode = newCode
-      }
-      resTxtjiemi = `<pre class="${c('response')}">${escape(newCode)}</pre>`
-
+      resTxtjiemi = `<pre class="${c('responsejiemi')}">${escape(newCode)}</pre>`
+      data['resTxtjiemi']  = newCode
     }
 
     const html = `<div class="${c('control')}">
@@ -155,19 +145,38 @@ export default class Detail extends Emitter {
     this._devtools.notify('Copied')
   }
   // 定义事件处理函数
-  _checkboxOnclick (event) {
-    console.log(11, event);
-  }
   _bindEvent () {
     const devtools = this._devtools
 
     this._$container
       .on('click', c('.back'), () => this.hide())
-      .on('click', c('.inputCheck'), this._checkboxOnclick)
       .on('change', c('.copy-res'), this._copyRes)
       .on('click', c('.http .response'), () => {
         const data = this._detailData
         const resTxt = data.resTxt
+
+        if (isJson(resTxt)) {
+          return showSources('object', resTxt)
+        }
+
+        switch (data.subType) {
+          case 'css':
+            return showSources('css', resTxt)
+          case 'html':
+            return showSources('html', resTxt)
+          case 'javascript':
+            return showSources('js', resTxt)
+          case 'json':
+            return showSources('object', resTxt)
+        }
+        switch (data.type) {
+          case 'image':
+            return showSources('img', data.url)
+        }
+      })
+      .on('click', c('.http .responsejiemi'), () => {
+        const data = this._detailData
+        const resTxt = data.resTxtjiemi
 
         if (isJson(resTxt)) {
           return showSources('object', resTxt)

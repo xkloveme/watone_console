@@ -14,8 +14,9 @@ module.exports = {
     ENV: true,
   },
   rules: {
-    quotes: ['error', 'single'],
-    'prefer-const': 2,
+    quotes: 'off',
+    'prefer-const': 'off',
+    'no-self-assign': 'off',
     'no-self-assign': 'off',
     'no-unused-vars': 'off',
   },
