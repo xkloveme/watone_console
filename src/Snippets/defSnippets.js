@@ -217,7 +217,7 @@ function loadPlugin(name) {
 }
 
 const pluginVersion = {
-  monitor: '1.0.0',
+  monitor: '1.0.1',
   features: '2.0.0',
   timing: '2.0.1',
   code: '2.1.0',

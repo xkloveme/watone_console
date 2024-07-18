@@ -126,7 +126,7 @@ export default class Cookie {
 
     this._$container
       .on('click', c('.refresh-cookie'), () => {
-        devtools.notify('Refreshed')
+        devtools.notify('Refreshed', { icon: 'success' })
         this.refresh()
       })
       .on('click', c('.clear-cookie'), () => {
@@ -154,7 +154,7 @@ export default class Cookie {
       .on('click', c('.copy-cookie'), () => {
         const key = this._selectedItem
         copy(this._getVal(key))
-        devtools.notify('Copied')
+        devtools.notify('Copied', { icon: 'success' })
       })
       .on('click', c('.filter'), () => {
         LunaModal.prompt('Filter').then((filter) => {

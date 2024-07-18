@@ -7,9 +7,9 @@
     padding-top: 39px;
   }
   .control {
-    @include control();
     padding: 10px;
     border-bottom: none;
+    @include control();
     .title {
       font-size: $font-size;
     }
@@ -92,6 +92,8 @@
       .section {
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
+        margin-top: 10px;
+        margin-bottom: 10px;
         h2 {
           background: var(--darker-background);
           color: var(--primary);
@@ -99,8 +101,6 @@
           line-height: 18px;
           font-size: $font-size;
         }
-        margin-top: 10px;
-        margin-bottom: 10px;
         table {
           color: var(--foreground);
           * {

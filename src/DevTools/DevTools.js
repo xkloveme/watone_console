@@ -30,14 +30,14 @@ import {
 } from '../lib/util'
 
 export default class DevTools extends Emitter {
-  constructor($container, { defaults = {} } = {}) {
+  constructor($container, { defaults = {}, inline = false } = {}) {
     super()
 
     this._defCfg = extend(
       {
         transparency: 1,
         displaySize: 80,
-        theme: isDarkMode() ? 'Dark' : 'Light',
+        theme: 'System preference',
       },
       defaults
     )
@@ -52,6 +52,7 @@ export default class DevTools extends Emitter {
     this._resizeTimer = null
     this._resizeStartY = 0
     this._resizeStartSize = 0
+    this._inline = inline
 
     this._initTpl()
     this._initTab()
@@ -76,7 +77,11 @@ export default class DevTools extends Emitter {
 
     return this
   }
-  hide () {
+  hide() {
+    if (this._inline) {
+      return
+    }
+
     this._isShow = false
     this.emit('hide')
 
@@ -96,15 +101,18 @@ export default class DevTools extends Emitter {
       defaults(tool, { init, show, hide, destroy })
     }
 
-    let name = tool.name
-    if (!name) return logger.error('You must specify a name for a tool')
-    name = name.toLowerCase()
-    if (this._tools[name]) return logger.warn(`Tool ${name} already exists`)
+    const name = tool.name
+    if (!name) {
+      return logger.error('You must specify a name for a tool')
+    }
 
-    this._$tools.prepend(
-      `<div id="${c(name)}" class="${c(name + ' tool')}"></div>`
-    )
-    tool.init(this._$tools.find(`.${c(name)}.${c('tool')}`), this)
+    if (this._tools[name]) {
+      return logger.warn(`Tool ${name} already exists`)
+    }
+
+    const id = name.replace(/\s+/g, '-')
+    this._$tools.prepend(`<div id="${c(id)}" class="${c(id + ' tool')}"></div>`)
+    tool.init(this._$tools.find(`.${c(id)}.${c('tool')}`), this)
     tool.active = false
     this._tools[name] = tool
 
@@ -148,8 +156,10 @@ export default class DevTools extends Emitter {
 
     if (tool) return tool
   }
-  showTool (name) {
-    if (this._curTool === name) return this
+  showTool(name) {
+    if (this._curTool === name) {
+      return this
+    }
     this._curTool = name
 
     const tools = this._tools
@@ -250,6 +260,10 @@ export default class DevTools extends Emitter {
   _setTheme (theme) {
     const { $container } = this
 
+    if (theme === 'System preference') {
+      theme = isDarkMode() ? 'Dark' : 'Light'
+    }
+
     if (isDarkTheme(theme)) {
       $container.addClass(c('dark'))
     } else {
@@ -263,7 +277,11 @@ export default class DevTools extends Emitter {
     this._opacity = opacity
     if (this._isShow) this._$el.css({ opacity })
   }
-  _setDisplaySize (height) {
+  _setDisplaySize(height) {
+    if (this._inline) {
+      height = 100
+    }
+
     if (!isNum(height)) return
 
     this._$el.css({ height: height + '%' })
@@ -316,6 +334,10 @@ export default class DevTools extends Emitter {
     const $resizer = this._$el.find(c('.resizer'))
     const $navBar = this._$el.find(c('.nav-bar'))
     const $document = $(document)
+
+    if (this._inline) {
+      $resizer.hide()
+    }
 
     const startListener = (e) => {
       e.preventDefault()

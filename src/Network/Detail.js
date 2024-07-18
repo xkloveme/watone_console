@@ -142,7 +142,7 @@ export default class Detail extends Emitter {
     }
 
     copy(data)
-    this._devtools.notify('Copied')
+    this._devtools.notify('Copied', { icon: 'success' })
   }
   // 定义事件处理函数
   _bindEvent () {

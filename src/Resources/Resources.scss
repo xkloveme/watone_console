@@ -34,11 +34,11 @@
     }
   }
   .title {
-    @include right-btn();
     padding: $padding;
     line-height: 18px;
     color: var(--primary);
     background: var(--darker-background);
+    @include right-btn();
   }
   .link-list {
     font-size: $font-size-s;
@@ -52,20 +52,20 @@
     }
   }
   .image-list {
-    @include clear-float();
     color: var(--foreground);
     font-size: $font-size-s;
     display: flex;
     flex-wrap: wrap;
     padding: $padding !important;
+    @include clear-float();
     li {
       flex-grow: 1;
       cursor: pointer;
+      overflow-y: hidden;
       &.image {
         height: 100px;
         font-size: 0;
       }
-      overflow-y: hidden;
       img {
         height: 100px;
         min-width: 100%;

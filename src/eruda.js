@@ -12,9 +12,12 @@ import Settings from './Settings/Settings'
 import emitter from './lib/emitter'
 import logger from './lib/logger'
 import * as util from './lib/util'
+import { isDarkTheme } from './lib/themes'
+import themes from './lib/themes'
 import isFn from 'licia/isFn'
 import isNum from 'licia/isNum'
 import isObj from 'licia/isObj'
+import each from 'licia/each'
 import isMobile from 'licia/isMobile'
 import viewportScale from 'licia/viewportScale'
 import detectBrowser from 'licia/detectBrowser'
@@ -22,6 +25,7 @@ import $ from 'licia/$'
 import toArr from 'licia/toArr'
 import upperFirst from 'licia/upperFirst'
 import nextTick from 'licia/nextTick'
+import isEqual from 'licia/isEqual'
 import extend from 'licia/extend'
 import evalCss from './lib/evalCss'
 import chobitsu from './lib/chobitsu'
@@ -32,27 +36,57 @@ export default {
     tool,
     autoScale = true,
     useShadowDom = true,
-    needbtn = false,
-    fullScreen = true,
+    inline = false,
     defaults = {},
   } = {}) {
-    if (this._isInit) return
+    if (this._isInit) {
+      return
+    }
 
     this._isInit = true
     this._scale = 1
 
     this._initContainer(container, useShadowDom)
     this._initStyle()
-    this._initDevTools(defaults)
-    needbtn && this._initEntryBtn()
+    this._initDevTools(defaults, inline)
+    this._initEntryBtn()
     this._initSettings()
     this._initTools(tool, fullScreen)
     this._registerListener()
-    if (autoScale) this._autoScale()
+
+    if (autoScale) {
+      this._autoScale()
+    }
+    if (inline) {
+      this._entryBtn.hide()
+      this._$el.addClass('eruda-inline')
+      this.show()
+    }
   },
   _isInit: false,
   version: VERSION,
-  util,
+  util: {
+    isErudaEl: util.isErudaEl,
+    evalCss,
+    isDarkTheme(theme) {
+      if (!theme) {
+        theme = this.getTheme()
+      }
+      return isDarkTheme(theme)
+    },
+    getTheme: () => {
+      const curTheme = evalCss.getCurTheme()
+
+      let result = 'Light'
+      each(themes, (theme, name) => {
+        if (isEqual(theme, curTheme)) {
+          result = name
+        }
+      })
+
+      return result
+    },
+  },
   chobitsu,
   Tool,
   Console,
@@ -178,10 +212,11 @@ export default {
         evalCss.container = document.head
         evalCss(
           require('./style/icon.css') +
-          require('luna-console/luna-console.css') +
-          require('luna-object-viewer/luna-object-viewer.css') +
-          require('luna-dom-viewer/luna-dom-viewer.css') +
-          require('luna-text-viewer/luna-text-viewer.css')
+            require('luna-console/luna-console.css') +
+            require('luna-object-viewer/luna-object-viewer.css') +
+            require('luna-dom-viewer/luna-dom-viewer.css') +
+            require('luna-text-viewer/luna-text-viewer.css') +
+            require('luna-notification/luna-notification.css')
         )
 
         el = document.createElement('div')
@@ -205,9 +240,10 @@ export default {
 
     this._$el = $(el)
   },
-  _initDevTools (defaults) {
+  _initDevTools(defaults, inline) {
     this._devTools = new DevTools(this._$el, {
       defaults,
+      inline,
     })
   },
   _initStyle () {

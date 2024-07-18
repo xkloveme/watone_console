@@ -276,6 +276,13 @@
   padding-left: 15px !important;
 }
 
+.inline {
+  .luna-modal,
+  .luna-notification {
+    position: absolute;
+  }
+}
+
 .luna-modal {
   z-index: 9999999;
 }

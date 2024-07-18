@@ -9,8 +9,8 @@
     font-size: 14px;
   }
   .control {
-    @include control();
     padding: 10px 0;
+    @include control();
     .icon-eye {
       right: 0;
     }
@@ -86,7 +86,6 @@
     color: var(--foreground);
     margin: 10px 0;
     h2 {
-      @include right-btn();
       color: var(--primary);
       background: var(--darker-background);
       border-top: 1px solid var(--border);
@@ -94,6 +93,7 @@
       line-height: 18px;
       font-size: $font-size;
       transition: background-color $anim-duration;
+      @include right-btn();
       &.active-effect {
         cursor: pointer;
       }

@@ -67,10 +67,6 @@ export default class Elements extends Tool {
 
     chobitsu.domain('Overlay').hideHighlight()
   }
-  // To be removed in 3.0.0
-  set(node) {
-    return this.select(node)
-  }
   select(node) {
     this._domViewer.select(node)
     this._setNode(node)
@@ -229,7 +225,7 @@ export default class Elements extends Tool {
       copy(node.nodeValue)
     }
 
-    this._container.notify('Copied')
+    this._container.notify('Copied', { icon: 'success' })
   }
   _toggleSelect = () => {
     this._$el.find(c('.select')).toggleClass(c('active'))
@@ -261,8 +257,11 @@ export default class Elements extends Tool {
   _inspectNodeRequested = ({ backendNodeId }) => {
     this._container.show()
     this._toggleSelect()
-    const { node } = chobitsu.domain('DOM').getNode({ nodeId: backendNodeId })
-    this.select(node)
+    try {
+      const { node } = chobitsu.domain('DOM').getNode({ nodeId: backendNodeId })
+      this.select(node)
+      /* eslint-disable no-empty */
+    } catch (e) {}
   }
   _setNode = (node) => {
     if (node === this._curNode) return

@@ -155,7 +155,7 @@ export default class Storage {
 
     this._$container
       .on('click', c('.refresh-storage'), () => {
-        devtools.notify('Refreshed')
+        devtools.notify('Refreshed', { icon: 'success' })
         this.refresh()
       })
       .on('click', c('.clear-storage'), () => {
@@ -181,7 +181,7 @@ export default class Storage {
       .on('click', c('.copy-storage'), () => {
         const key = this._selectedItem
         copy(this._getVal(key))
-        devtools.notify('Copied')
+        devtools.notify('Copied', { icon: 'success' })
       })
       .on('click', c('.filter'), () => {
         LunaModal.prompt('Filter').then((filter) => {

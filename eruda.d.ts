@@ -36,6 +36,10 @@ declare module 'eruda' {
      */
     useShadowDom?: boolean
     /**
+     * Enable inline mode
+     */
+    inline?: boolean
+    /**
      * Default settings
      */
     defaults?: InitDefaults
@@ -46,11 +50,19 @@ declare module 'eruda' {
     y: number
   }
 
-  export interface Emitter {}
+  type AnyFn = (...args: any[]) => any
+
+  export interface Emitter {
+    on(event: string, listener: AnyFn): Emitter
+    off(event: string, listener: AnyFn): Emitter
+    once(event: string, listener: AnyFn): Emitter
+    emit(event: string, ...args: any[]): Emitter
+    removeAllListeners(event?: string): Emitter
+  }
 
   /**
    * Eruda Plugin
-   * @see https://github.com/liriliri/eruda/blob/master/doc/PLUGIN.md
+   * @see https://eruda.liriliri.io/docs/plugin.html
    */
   export interface Tool {
     /**
@@ -161,11 +173,16 @@ declare module 'eruda' {
   }
 
   export interface Elements extends Tool {
-    set<K extends keyof ElementsConfig>(name: K, value: ElementsConfig[K]): void
+    config: {
+      set<K extends keyof ElementsConfig>(
+        name: K,
+        value: ElementsConfig[K]
+      ): void
+    }
     /**
      * Element to display
      */
-    html(el: HTMLElement): void
+    select(el: HTMLElement): void
   }
 
   export interface ElementsConstructor {
@@ -201,10 +218,12 @@ declare module 'eruda' {
   }
 
   export interface Resources extends Tool {
-    set<K extends keyof ResourcesConfig>(
-      name: K,
-      value: ResourcesConfig[K]
-    ): void
+    config: {
+      set<K extends keyof ResourcesConfig>(
+        name: K,
+        value: ResourcesConfig[K]
+      ): void
+    }
   }
 
   export interface ResourcesConstructor {
@@ -228,7 +247,9 @@ declare module 'eruda' {
   }
 
   export interface Sources extends Tool {
-    set<K extends keyof SourcesConfig>(name: K, value: SourcesConfig[K]): void
+    config: {
+      set<K extends keyof SourcesConfig>(name: K, value: SourcesConfig[K]): void
+    }
   }
 
   export interface SourcesConstructor {
@@ -389,16 +410,30 @@ declare module 'eruda' {
 
   /**
    * Eruda Util
-   * @see https://github.com/liriliri/eruda/blob/master/doc/UTIL_API.md
+   * @see https://eruda.liriliri.io/docs/plugin.html#utility
    */
   export interface Util {
     evalCss(css: string): HTMLStyleElement
     isErudaEl(val: any): boolean
+    isDarkTheme(theme?: string): boolean
+    getTheme(): string
+  }
+
+  interface IToolNameMap {
+    console: InstanceType<ErudaConsoleConstructor>
+    elements: InstanceType<ElementsConstructor>
+    info: InstanceType<InfoConstructor>
+    network: InstanceType<NetworkConstructor>
+    resources: InstanceType<ResourcesConstructor>
+    settings: InstanceType<SettingsConstructor>
+    snippets: InstanceType<SnippetsConstructor>
+    sources: InstanceType<SourcesConstructor>
+    entryBtn: InstanceType<EntryBtnConstructor>
   }
 
   /**
    * Eruda APIs
-   * @see https://github.com/liriliri/eruda/blob/master/doc/API.md
+   * @see https://eruda.liriliri.io/docs/api.html
    */
   export interface ErudaApis {
     /**
@@ -424,13 +459,9 @@ declare module 'eruda' {
     /**
      * Get tool, eg. console, elements panels.
      */
+    get<K extends keyof IToolNameMap>(name: K): IToolNameMap[K]
     get<T extends ToolConstructor>(name: string): InstanceType<T> | undefined
-    get(
-      name: string
-    ):
-      | InstanceType<EntryBtnConstructor>
-      | InstanceType<DevToolsConstructor>
-      | undefined
+    get(): InstanceType<DevToolsConstructor>
     /**
      * Add tool.
      */
