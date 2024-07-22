@@ -69,7 +69,7 @@ export default class Detail extends Emitter {
 
       let newCode = decrypt(text.replace(/['"“‘]/g, ''), this._token)
       resTxtjiemi = `<pre class="${c('responsejiemi')}">${escape(newCode)}</pre>`
-      data['resTxtjiemi']  = newCode
+      data['resTxtjiemi'] = newCode
     }
 
     const html = `<div class="${c('control')}">
@@ -145,7 +145,7 @@ export default class Detail extends Emitter {
       data += `\n响应解密数据：
       ${newCode}\n`
     }
-    console.log(data)
+    // console.log(data)
     copy(data)
     this._devtools.notify('Copied', { icon: 'success' })
   }

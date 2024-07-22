@@ -1,7 +1,6 @@
 
 <h1 align="center">watone console</h1>
 
-<div align="center">
 
 watone Console for Mobile Browsers.
 
