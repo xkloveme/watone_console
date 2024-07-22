@@ -124,7 +124,8 @@ export default class Detail extends Emitter {
   _copyRes = () => {
     const detailData = this._detailData
 
-    let data = `${detailData.method} ${detailData.url} ${detailData.status}\n`
+    let data = `请求地址：${detailData.url} \n
+    ${detailData.method} ${detailData.url} ${detailData.status}\n`
     if (!isEmpty(detailData.data)) {
       data += '\nRequest Data\n\n'
       data += `${detailData.data}\n`
@@ -138,9 +139,13 @@ export default class Detail extends Emitter {
       each(detailData.resHeaders, (val, key) => (data += `${key}: ${val}\n`))
     }
     if (detailData.resTxt) {
-      data += `\n${detailData.resTxt}\n`
+      let newCode = decrypt(detailData.resTxt.replace(/['"“‘]/g, ''), this._token)
+      data += `\n响应数据：
+      ${detailData.resTxt}\n`
+      data += `\n响应解密数据：
+      ${newCode}\n`
     }
-
+    console.log(data)
     copy(data)
     this._devtools.notify('Copied', { icon: 'success' })
   }
@@ -150,7 +155,7 @@ export default class Detail extends Emitter {
 
     this._$container
       .on('click', c('.back'), () => this.hide())
-      .on('change', c('.copy-res'), this._copyRes)
+      .on('click', c('.copy-res'), this._copyRes)
       .on('click', c('.http .response'), () => {
         const data = this._detailData
         const resTxt = data.resTxt

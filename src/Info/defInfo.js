@@ -39,19 +39,8 @@ export default [
   {
     name: 'About',
     val:
-      '<a href="https://eruda.liriliri.io" target="_blank">Eruda v' +
+      '<a href="https://wt-front-end.github.io/wt-docs/" target="_blank">watone console v' +
       VERSION +
       '</a>',
-  },
-  {
-    name: 'Backers',
-    val() {
-      return `
-        <a rel="noreferrer noopener" href="https://opencollective.com/eruda" target="_blank">
-          <img data-exclude="true" style="width: 100%;" loading="lazy" src="https://opencollective.com/eruda/backers.svg?width=${
-            window.innerWidth * 1.5
-          }&exclude=true">
-        </a>`
-    },
-  },
+  }
 ]
