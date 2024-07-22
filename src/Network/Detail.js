@@ -145,7 +145,7 @@ export default class Detail extends Emitter {
       data += `\n响应解密数据：
       ${newCode}\n`
     }
-    // console.log(data)
+    console.log(data)
     copy(data)
     this._devtools.notify('Copied', { icon: 'success' })
   }
