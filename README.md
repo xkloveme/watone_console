@@ -6,7 +6,7 @@ watone Console for Mobile Browsers.
 
 
 ```javascript
-javascript:(function () { var script = document.createElement('script'); script.src="https://cdn.jsdelivr.net/npm/@watone/console"; document.body.append(script); script.onload = function () { eruda.init(); } })();
+javascript:(function () { var script = document.createElement('script'); script.src="https://cdn.jsdelivr.net/npm/@watone/console"; document.body.append(script); script.onload = function () { wtConsole.init(); } })();
 ```
 
 ## Features
@@ -35,14 +35,14 @@ Add this script to your page.
 
 ```html
 <script src="node_modules/@watone/console/eruda.js"></script>
-<script>eruda.init();</script>
+<script>wtConsole.init();</script>
 ```
 
 It's also available on [jsDelivr](https://www.jsdelivr.com/package/npm/@watone/console)
 
 ```html
 <script src="//cdn.jsdelivr.net/npm/@watone/console"></script>
-<script>eruda.init();</script>
+<script>wtConsole.init();</script>
 ```
 
 The JavaScript file size is quite huge(about 100kb gzipped) and therefore not suitable to include in mobile pages. It's recommended to make sure eruda is loaded only when eruda is set to true on url(http://example.com/?eruda=true), for example:
@@ -52,7 +52,7 @@ The JavaScript file size is quite huge(about 100kb gzipped) and therefore not su
     var src = '//cdn.jsdelivr.net/npm/@watone/console';
     if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
     document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-    document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+    document.write('<scr' + 'ipt>wtConsole.init();</scr' + 'ipt>');
 })();
 ```
 
@@ -78,7 +78,7 @@ For more information, please check the [documentation](https://eruda.liriliri.io
 let el = document.createElement('div');
 document.body.appendChild(el);
 
-eruda.init({
+wtConsole.init({
     container: el,
     tool: ['console', 'elements']
 });
