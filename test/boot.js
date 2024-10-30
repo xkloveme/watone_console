@@ -14,11 +14,11 @@ function boot(name, cb) {
     }
 
     try {
-      eruda.init(options)
+      wtConsole.init(options)
     } catch (e) {
       alert(e)
     }
-    eruda.show()
+    wtConsole.show()
 
     cb && cb()
 

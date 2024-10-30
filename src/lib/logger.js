@@ -3,7 +3,7 @@ import Logger from 'licia/Logger'
 let logger
 
 export default logger = new Logger(
-  '[Eruda]',
+  '[wtConsole]',
   ENV === 'production' ? 'warn' : 'debug'
 )
 

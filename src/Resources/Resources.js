@@ -12,7 +12,7 @@ import MutationObserver from 'licia/MutationObserver'
 import toArr from 'licia/toArr'
 import concat from 'licia/concat'
 import map from 'licia/map'
-import { isErudaEl, classPrefix as c } from '../lib/util'
+import { iswtConsoleEl, classPrefix as c } from '../lib/util'
 import evalCss from '../lib/evalCss'
 import Storage from './Storage'
 import Cookie from './Cookie'
@@ -25,7 +25,7 @@ export default class Resources extends Tool {
     this._style = evalCss(require('./Resources.scss'))
 
     this.name = 'resources'
-    this._hideErudaSetting = false
+    this._hidewtConsoleSetting = false
     this._observeElement = true
   }
   init($el, container) {
@@ -290,30 +290,30 @@ export default class Resources extends Tool {
     const container = this._container
 
     $el
-      .on('click', '.eruda-refresh-script', () => {
+      .on('click', '.wtConsole-refresh-script', () => {
         container.notify('Refreshed', { icon: 'success' })
         this.refreshScript()
       })
-      .on('click', '.eruda-refresh-stylesheet', () => {
+      .on('click', '.wtConsole-refresh-stylesheet', () => {
         container.notify('Refreshed', { icon: 'success' })
         this.refreshStylesheet()
       })
-      .on('click', '.eruda-refresh-iframe', () => {
+      .on('click', '.wtConsole-refresh-iframe', () => {
         container.notify('Refreshed', { icon: 'success' })
         this.refreshIframe()
       })
-      .on('click', '.eruda-refresh-image', () => {
+      .on('click', '.wtConsole-refresh-image', () => {
         container.notify('Refreshed', { icon: 'success' })
         this.refreshImage()
       })
-      .on('click', '.eruda-img-link', function () {
+      .on('click', '.wtConsole-img-link', function () {
         const src = $(this).attr('src')
 
         showSources('img', src)
       })
-      .on('click', '.eruda-css-link', linkFactory('css'))
-      .on('click', '.eruda-js-link', linkFactory('js'))
-      .on('click', '.eruda-iframe-link', linkFactory('iframe'))
+      .on('click', '.wtConsole-css-link', linkFactory('css'))
+      .on('click', '.wtConsole-js-link', linkFactory('js'))
+      .on('click', '.wtConsole-iframe-link', linkFactory('iframe'))
 
     function showSources(type, data) {
       const sources = container.get('sources')
@@ -355,23 +355,23 @@ export default class Resources extends Tool {
     if (!settings) return
 
     settings
-      .remove(cfg, 'hideErudaSetting')
+      .remove(cfg, 'hidewtConsoleSetting')
       .remove(cfg, 'observeElement')
       .remove('Resources')
   }
   _initCfg() {
     const cfg = (this.config = Settings.createCfg('resources', {
-      hideErudaSetting: true,
+      hidewtConsoleSetting: true,
       observeElement: true,
     }))
 
-    if (cfg.get('hideErudaSetting')) this._hideErudaSetting = true
+    if (cfg.get('hidewtConsoleSetting')) this._hidewtConsoleSetting = true
     if (!cfg.get('observeElement')) this._observeElement = false
 
     cfg.on('change', (key, val) => {
       switch (key) {
-        case 'hideErudaSetting':
-          this._hideErudaSetting = val
+        case 'hidewtConsoleSetting':
+          this._hidewtConsoleSetting = val
           return
         case 'observeElement':
           this._observeElement = val
@@ -382,7 +382,7 @@ export default class Resources extends Tool {
     const settings = this._container.get('settings')
     settings
       .text('Resources')
-      .switch(cfg, 'hideErudaSetting', 'Hide Eruda Setting')
+      .switch(cfg, 'hidewtConsoleSetting', 'Hide wtConsole Setting')
       .switch(cfg, 'observeElement', 'Auto Refresh Elements')
       .separator()
   }
@@ -394,7 +394,7 @@ export default class Resources extends Tool {
     })
   }
   _handleMutation(mutation) {
-    if (isErudaEl(mutation.target)) return
+    if (iswtConsoleEl(mutation.target)) return
 
     const checkEl = (el) => {
       const tagName = getLowerCaseTagName(el)

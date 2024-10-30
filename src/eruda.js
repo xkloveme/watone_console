@@ -59,14 +59,14 @@ export default {
     }
     if (inline) {
       this._entryBtn.hide()
-      this._$el.addClass('eruda-inline')
+      this._$el.addClass('wtConsole-inline')
       this.show()
     }
   },
   _isInit: false,
   version: VERSION,
   util: {
-    isErudaEl: util.isErudaEl,
+    iswtConsoleEl: util.iswtConsoleEl,
     evalCss,
     isDarkTheme(theme) {
       if (!theme) {
@@ -186,7 +186,7 @@ export default {
     emitter.off(emitter.SCALE, evalCss.setScale)
   },
   _checkInit() {
-    if (!this._isInit) logger.error('Please call "eruda.init()" first')
+    if (!this._isInit) logger.error('Please call "wtConsole.init()" first')
     return this._isInit
   },
   _initContainer(container, useShadowDom) {
@@ -195,7 +195,7 @@ export default {
       document.documentElement.appendChild(container)
     }
 
-    container.id = 'eruda'
+    container.id = 'wtConsole'
     container.style.all = 'initial'
     this._container = container
 
@@ -231,7 +231,7 @@ export default {
     }
 
     extend(el, {
-      className: 'eruda-container __chobitsu-hide__',
+      className: 'wtConsole-container __chobitsu-hide__',
       contentEditable: false,
     })
 
@@ -247,7 +247,7 @@ export default {
     })
   },
   _initStyle() {
-    const className = 'eruda-style-container'
+    const className = 'wtConsole-style-container'
     const $el = this._$el
 
     if (this._shadowRoot) {

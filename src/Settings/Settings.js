@@ -135,7 +135,7 @@ export default class Settings extends Tool {
     }
   }
   _genId() {
-    return uniqId('eruda-settings')
+    return uniqId('wtConsole-settings')
   }
   _getSetting(id) {
     let ret
@@ -153,6 +153,6 @@ export default class Settings extends Tool {
     })
   }
   static createCfg(name, data) {
-    return new LocalStore('eruda-' + name, data)
+    return new LocalStore('wtConsole-' + name, data)
   }
 }

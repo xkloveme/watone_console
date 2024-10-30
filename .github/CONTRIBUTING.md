@@ -2,7 +2,7 @@
 
 ## Development Setup
 
-[Node.js](https://nodejs.org/en/) is needed for the development of eruda.
+[Node.js](https://nodejs.org/en/) is needed for the development of wtConsole.
 
 After cloning the repo, run:
 
@@ -18,7 +18,7 @@ npm run setup
 ```bash
 # watch and auto re-build.
 npm run dev
-# build eruda.js
+# build wtConsole.js
 npm run build
 # lint, build and test.
 npm run ci

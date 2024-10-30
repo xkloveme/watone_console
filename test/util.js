@@ -2957,9 +2957,9 @@
          */
 
         /* example
-         * query.parse('foo=bar&eruda=true'); // -> {foo: 'bar', eruda: 'true'}
-         * query.stringify({ foo: 'bar', eruda: 'true' }); // -> 'foo=bar&eruda=true'
-         * query.parse('name=eruda&name=eustia'); // -> {name: ['eruda', 'eustia']}
+         * query.parse('foo=bar&wtConsole=true'); // -> {foo: 'bar', wtConsole: 'true'}
+         * query.stringify({ foo: 'bar', wtConsole: 'true' }); // -> 'foo=bar&wtConsole=true'
+         * query.parse('name=wtConsole&name=eustia'); // -> {name: ['wtConsole', 'eustia']}
          */
 
         /* typescript

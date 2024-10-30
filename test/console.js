@@ -1,7 +1,7 @@
 describe('console', function () {
-  let tool = eruda.get('console')
+  let tool = wtConsole.get('console')
   tool.config.set('asyncRender', false)
-  let $tool = $('.eruda-console')
+  let $tool = $('.wtConsole-console')
   let logger = tool._logger
 
   function log(i) {
@@ -13,7 +13,7 @@ describe('console', function () {
   }
 
   beforeEach(function () {
-    eruda.show('console')
+    wtConsole.show('console')
     logger.clear(true)
   })
 
@@ -30,24 +30,24 @@ describe('console', function () {
   describe('ui', function () {
     it('clear', function () {
       tool.log('test')
-      $('.eruda-clear-console').click()
-      expect($tool.find('.eruda-logs li')).toHaveLength(0)
+      $('.wtConsole-clear-console').click()
+      expect($tool.find('.wtConsole-logs li')).toHaveLength(0)
     })
 
     it('level', function () {
       tool.log('test')
       tool.warn('test')
       expect(logs()).toHaveLength(2)
-      $('.eruda-level[data-level="warning"]').click()
+      $('.wtConsole-level[data-level="warning"]').click()
       expect(logs()).toHaveLength(1)
-      $('.eruda-level[data-level="all"]').click()
+      $('.wtConsole-level[data-level="all"]').click()
     })
   })
 
   describe('execute', function () {
     it('js', function () {
       $tool.find('textarea').val('1+2')
-      $('.eruda-execute').click()
+      $('.wtConsole-execute').click()
       expect($(log(1))).toContainText('3')
     })
   })

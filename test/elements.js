@@ -1,8 +1,8 @@
 describe('elements', function () {
-  let tool = eruda.get('elements')
+  let tool = wtConsole.get('elements')
 
   beforeEach(function () {
-    eruda.show('elements')
+    wtConsole.show('elements')
   })
 
   describe('api', function () {

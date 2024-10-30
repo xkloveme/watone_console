@@ -1,8 +1,8 @@
 describe('settings', function () {
-  let tool = eruda.get('settings')
-  let $tool = $('.eruda-settings')
+  let tool = wtConsole.get('settings')
+  let $tool = $('.wtConsole-settings')
 
-  let cfg = eruda.Settings.createCfg('test')
+  let cfg = wtConsole.Settings.createCfg('test')
   cfg.set({
     testSwitch: false,
     testSelect: '1',

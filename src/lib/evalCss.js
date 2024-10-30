@@ -68,7 +68,7 @@ function resetStyles() {
 
 function resetStyle({ css, el }) {
   css = css.replace(/(\d+)px/g, ($0, $1) => +$1 * scale + 'px')
-  css = css.replace(/_/g, 'eruda-')
+  css = css.replace(/_/g, 'wtConsole-')
   const _keys = keys(themes.Light)
   each(_keys, (key) => {
     css = css.replace(

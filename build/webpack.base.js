@@ -50,7 +50,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/assets/',
-    library: 'eruda',
+    library: 'wtConsole',
     libraryTarget: 'umd',
   },
   module: {

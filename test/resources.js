@@ -1,8 +1,8 @@
 describe('resources', function () {
-  let $tool = $('.eruda-resources')
+  let $tool = $('.wtConsole-resources')
 
   beforeEach(function () {
-    eruda.show('resources')
+    wtConsole.show('resources')
   })
 
   describe('localStorage', function () {
@@ -12,7 +12,7 @@ describe('resources', function () {
     })
 
     it('clear', function () {
-      $tool.find('.eruda-local-storage .eruda-clear-storage').click()
+      $tool.find('.wtConsole-local-storage .wtConsole-clear-storage').click()
     })
   })
 
@@ -23,18 +23,18 @@ describe('resources', function () {
     })
 
     it('clear', function () {
-      $tool.find('.eruda-session-storage .eruda-clear-storage').click()
+      $tool.find('.wtConsole-session-storage .wtConsole-clear-storage').click()
     })
   })
 
   describe('cookie', function () {
     it('show', function () {
       util.cookie.set('testKey', 'testVal')
-      $tool.find('.eruda-refresh-cookie').click()
+      $tool.find('.wtConsole-refresh-cookie').click()
     })
 
     it('clear', function () {
-      $tool.find('.eruda-clear-cookie').click()
+      $tool.find('.wtConsole-clear-cookie').click()
     })
   })
 })

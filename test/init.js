@@ -1,3 +1,3 @@
-eruda.init({
+wtConsole.init({
   useShadowDom: false,
 })

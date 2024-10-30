@@ -8,7 +8,7 @@ import upperFirst from 'licia/upperFirst'
 import loadJs from 'licia/loadJs'
 import trim from 'licia/trim'
 import LunaModal from 'luna-modal'
-import { isErudaEl } from '../lib/util'
+import { iswtConsoleEl } from '../lib/util'
 import evalCss from '../lib/evalCss'
 
 let style = null
@@ -160,7 +160,7 @@ function search(text) {
   traverse(root, (node) => {
     const $node = $(node)
 
-    if (!$node.hasClass('eruda-search-highlight-block')) return
+    if (!$node.hasClass('wtConsole-search-highlight-block')) return
 
     return document.createTextNode($node.text())
   })
@@ -171,14 +171,14 @@ function search(text) {
     let val = node.nodeValue
     val = val.replace(
       regText,
-      (match) => `<span class="eruda-keyword">${match}</span>`
+      (match) => `<span class="wtConsole-keyword">${match}</span>`
     )
     if (val === node.nodeValue) return
 
     const $ret = $(document.createElement('div'))
 
     $ret.html(val)
-    $ret.addClass('eruda-search-highlight-block')
+    $ret.addClass('wtConsole-search-highlight-block')
 
     return $ret.get(0)
   })
@@ -187,7 +187,7 @@ function search(text) {
 function traverse(root, processor) {
   const childNodes = root.childNodes
 
-  if (isErudaEl(root)) return
+  if (iswtConsoleEl(root)) return
 
   for (let i = 0, len = childNodes.length; i < len; i++) {
     const newNode = traverse(childNodes[i], processor)
@@ -205,7 +205,7 @@ function loadPlugin(name) {
   if (!startWith(protocol, 'http')) protocol = 'http:'
 
   loadJs(
-    `${protocol}//cdn.jsdelivr.net/npm/eruda-${name}@${pluginVersion[name]}`,
+    `${protocol}//cdn.jsdelivr.net/npm/wtConsole-${name}@${pluginVersion[name]}`,
     (isLoaded) => {
       if (!isLoaded || !window[globalName])
         return logger.error('Fail to load plugin ' + name)

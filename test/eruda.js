@@ -1,30 +1,30 @@
 describe('devTools', function () {
   describe('init', function () {
     it('destroy', function () {
-      eruda.destroy()
+      wtConsole.destroy()
 
-      expect($('#eruda')).toHaveLength(0)
+      expect($('#wtConsole')).toHaveLength(0)
     })
 
     it('init', function () {
       let container = document.createElement('div')
-      container.id = 'eruda'
+      container.id = 'wtConsole'
       document.body.appendChild(container)
 
-      eruda.init({
+      wtConsole.init({
         container: container,
         tool: [],
         useShadowDom: false,
       })
 
-      let $eruda = $('#eruda')
-      expect($eruda.find('.eruda-dev-tools')).toHaveLength(1)
+      let $wtConsole = $('#wtConsole')
+      expect($wtConsole.find('.wtConsole-dev-tools')).toHaveLength(1)
     })
   })
 
   describe('tool', function () {
     it('add', function () {
-      eruda.add({
+      wtConsole.add({
         name: 'test',
         init: function ($el) {
           this._$el = $el
@@ -32,32 +32,32 @@ describe('devTools', function () {
         },
       })
 
-      expect($('.eruda-test')).toContainText('Test Plugin')
+      expect($('.wtConsole-test')).toContainText('Test Plugin')
     })
 
     it('show', function () {
-      let $tool = $('.eruda-test')
+      let $tool = $('.wtConsole-test')
       expect($tool).toBeHidden()
-      eruda.show('test')
+      wtConsole.show('test')
       expect($tool).toHaveCss({ display: 'block' })
     })
 
     it('remove', function () {
-      eruda.remove('test')
-      expect($('.eruda-test')).toHaveLength(0)
+      wtConsole.remove('test')
+      expect($('.wtConsole-test')).toHaveLength(0)
     })
   })
 
   describe('display', function () {
     it('show', function () {
-      eruda.show()
-      expect($('.eruda-dev-tools')).toHaveCss({ display: 'block' })
+      wtConsole.show()
+      expect($('.wtConsole-dev-tools')).toHaveCss({ display: 'block' })
     })
 
     it('hide', function (done) {
-      eruda.hide()
+      wtConsole.hide()
       setTimeout(function () {
-        expect($('.eruda-dev-tools')).toBeHidden()
+        expect($('.wtConsole-dev-tools')).toBeHidden()
         done()
       }, 500)
     })
@@ -65,8 +65,8 @@ describe('devTools', function () {
 
   describe('scale', function () {
     it('get', function () {
-      eruda.scale(1)
-      expect(eruda.scale()).toBe(1)
+      wtConsole.scale(1)
+      expect(wtConsole.scale()).toBe(1)
     })
   })
 })

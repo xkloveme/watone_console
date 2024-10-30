@@ -224,7 +224,7 @@ export default class Sources extends Tool {
     } catch (e) {}
 
     const objViewer = new LunaObjectViewer(
-      this._$el.find('.eruda-json').get(0),
+      this._$el.find('.wtConsole-json').get(0),
       {
         unenumerable: true,
         accessGetter: true,

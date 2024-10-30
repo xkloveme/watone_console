@@ -228,7 +228,7 @@ export default class DevTools extends Emitter {
             return
           }
 
-          if (startWith(key, 'eruda')) {
+          if (startWith(key, 'wtConsole')) {
             store.removeItem(key)
           }
         })

@@ -8,7 +8,7 @@
     />
     <title>Manual</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="assets/eruda.js"></script>
+    <script src="assets/wtConsole.js"></script>
     <script src="util.js"></script>
   </head>
   <body id="body" class="test">
@@ -64,7 +64,7 @@
       addClickEvent('issue17', function () {
         var B = function () {}
         var A = function () {
-          this._data = 'eruda'
+          this._data = 'wtConsole'
         }
         A.prototype = Object.create(B.prototype)
         Object.defineProperty(A.prototype, 'data', {
@@ -76,8 +76,8 @@
         console.log(a)
       })
       addClickEvent('plugin', function () {
-        eruda.add({ name: 'test' })
-        eruda.add(function (eruda) {
+        wtConsole.add({ name: 'test' })
+        wtConsole.add(function (wtConsole) {
           return {
             name: 'test2',
             init: function ($el) {
@@ -86,8 +86,8 @@
             },
           }
         })
-        var Tool = eruda.Tool
-        eruda.add(
+        var Tool = wtConsole.Tool
+        wtConsole.add(
           new (Tool.extend({
             name: 'test plugin',
             init: function ($el) {
@@ -121,7 +121,7 @@
         console.log(arr)
       })
       addClickEvent('override-style', function () {
-        util.evalCss('.eruda-nav-bar {background: red !important;}')
+        util.evalCss('.wtConsole-nav-bar {background: red !important;}')
       })
       addClickEvent('log', function () {
         console.clear()
@@ -185,8 +185,8 @@
       })
     </script>
     <script>
-      eruda.init()
-      eruda.show()
+      wtConsole.init()
+      wtConsole.show()
     </script>
   </body>
 </html>

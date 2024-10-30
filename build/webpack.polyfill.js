@@ -5,6 +5,6 @@ module.exports = {
   entry: './src/polyfill',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'eruda-polyfill.js',
+    filename: 'wtConsole-polyfill.js',
   },
 }

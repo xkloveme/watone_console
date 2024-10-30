@@ -1,9 +1,9 @@
 describe('sources', function () {
-  let tool = eruda.get('sources')
-  let $tool = $('.eruda-sources')
+  let tool = wtConsole.get('sources')
+  let $tool = $('.wtConsole-sources')
 
   beforeEach(function () {
-    eruda.show('sources')
+    wtConsole.show('sources')
   })
 
   it('raw', function () {

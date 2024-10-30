@@ -83,9 +83,9 @@ export function pxToNum(str) {
   return toNum(str.replace('px', ''))
 }
 
-export function isErudaEl(el) {
+export function iswtConsoleEl(el) {
   while (el) {
-    if (el.id === 'eruda') return true
+    if (el.id === 'wtConsole') return true
     el = el.parentNode
   }
 
@@ -136,7 +136,7 @@ function traverseTree(tree, handler) {
 }
 
 function processClass(str) {
-  const prefix = `eruda-`
+  const prefix = `wtConsole-`
 
   return map(trim(str).split(/\s+/), (singleClass) => {
     if (contain(singleClass, prefix)) {

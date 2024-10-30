@@ -2,23 +2,23 @@
   "name": "@watone/console",
   "version": "1.0.8",
   "description": "Watone Console for Mobile Browsers",
-  "main": "eruda.js",
+  "main": "wtConsole.js",
   "browserslist": [
     "since 2015",
     "not dead"
   ],
   "scripts": {
     "ci": "npm run lint && npm run test && npm run build && npm run es5",
-    "build": "lsla shx rm -rf dist && webpack --config build/webpack.prod.js && webpack --config build/webpack.polyfill.js && node build/build && cp README.md eruda.d.ts dist",
+    "build": "lsla shx rm -rf dist && webpack --config build/webpack.prod.js && webpack --config build/webpack.polyfill.js && node build/build && cp README.md wtConsole.d.ts dist",
     "build:analyser": "webpack --config build/webpack.analyser.js",
     "dev": "webpack-dev-server --config build/webpack.dev.js --host 0.0.0.0",
     "test": "karma start",
     "format": "lsla prettier \"*.{js,ts}\" \"src/**/*.{js,scss,css}\" \"build/*.js\" \"test/*.{js,html}\" --write",
     "lint": "eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix",
-    "es5": "es-check es5 dist/eruda.js dist/eruda-polyfill.js",
+    "es5": "es-check es5 dist/wtConsole.js dist/wtConsole-polyfill.js",
     "setup": "lsla shx mkdir -p test/lib && lsla shx cp node_modules/jasmine-core/lib/jasmine-core/{jasmine.css,jasmine.js,jasmine-html.js,boot.js} test/lib && lsla shx cp node_modules/jasmine-jquery/lib/jasmine-jquery.js test/lib && lsla shx cp node_modules/jquery/dist/jquery.js test/lib",
-    "genIcon": "lsla genIcon --input src/style/icon --output src/style/icon.css --name eruda-icon && lsla prettier src/**/*.css --write",
+    "genIcon": "lsla genIcon --input src/style/icon --output src/style/icon.css --name wtConsole-icon && lsla prettier src/**/*.css --write",
     "patch": "npm version patch && git push origin --tags",
     "minor": "npm version minor && git push origin --tags",
     "major": "npm version major && git push origin --tags"
@@ -35,14 +35,14 @@
   "author": "xkloveme",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/liriliri/eruda/issues"
+    "url": "https://github.com/liriliri/wtConsole/issues"
   },
   "files": [
     "README.md",
-    "eruda-polyfill.js",
-    "eruda.d.ts",
-    "eruda.js",
-    "eruda.js.map"
+    "wtConsole-polyfill.js",
+    "wtConsole.d.ts",
+    "wtConsole.js",
+    "wtConsole.js.map"
   ],
   "devDependencies": {
     "@babel/core": "^7.18.6",

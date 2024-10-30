@@ -1,8 +1,8 @@
 /**
- * Type definitions for Eruda
- * @see https://github.com/liriliri/eruda
+ * Type definitions for wtConsole
+ * @see https://github.com/liriliri/wtConsole
  */
-declare module 'eruda' {
+declare module 'wtConsole' {
   export interface InitDefaults {
     /**
      * Transparency, 0 to 1
@@ -28,7 +28,7 @@ declare module 'eruda' {
      */
     tool?: string[]
     /**
-     * Auto scale eruda for different viewport settings
+     * Auto scale wtConsole for different viewport settings
      */
     autoScale?: boolean
     /**
@@ -61,8 +61,8 @@ declare module 'eruda' {
   }
 
   /**
-   * Eruda Plugin
-   * @see https://eruda.liriliri.io/docs/plugin.html
+   * wtConsole Plugin
+   * @see https://wtConsole.liriliri.io/docs/plugin.html
    */
   export interface Tool {
     /**
@@ -83,7 +83,7 @@ declare module 'eruda' {
      */
     hide(): Tool | undefined
     /**
-     * Called when plugin is removed using `eruda.remove('plugin name')`.
+     * Called when plugin is removed using `wtConsole.remove('plugin name')`.
      */
     destroy(): void
   }
@@ -142,7 +142,7 @@ declare module 'eruda' {
     type: string
   }
 
-  export interface ErudaConsole extends Tool, Console {
+  export interface wtConsoleConsole extends Tool, Console {
     config: {
       set<K extends keyof ConsoleConfig>(name: K, value: ConsoleConfig[K]): void
     }
@@ -156,9 +156,9 @@ declare module 'eruda' {
     html(htmlStr: string): void
   }
 
-  export interface ErudaConsoleConstructor {
-    new (): ErudaConsole
-    readonly prototype: ErudaConsole
+  export interface wtConsoleConsoleConstructor {
+    new (): wtConsoleConsole
+    readonly prototype: wtConsoleConsole
   }
 
   export interface ElementsConfig {
@@ -208,9 +208,9 @@ declare module 'eruda' {
 
   export interface ResourcesConfig {
     /**
-     * Hide Eruda Setting
+     * Hide wtConsole Setting
      */
-    hideErudaSetting?: boolean
+    hidewtConsoleSetting?: boolean
     /**
      * Auto Refresh Elements
      */
@@ -409,18 +409,18 @@ declare module 'eruda' {
   }
 
   /**
-   * Eruda Util
-   * @see https://eruda.liriliri.io/docs/plugin.html#utility
+   * wtConsole Util
+   * @see https://wtConsole.liriliri.io/docs/plugin.html#utility
    */
   export interface Util {
     evalCss(css: string): HTMLStyleElement
-    isErudaEl(val: any): boolean
+    iswtConsoleEl(val: any): boolean
     isDarkTheme(theme?: string): boolean
     getTheme(): string
   }
 
   interface IToolNameMap {
-    console: InstanceType<ErudaConsoleConstructor>
+    console: InstanceType<wtConsoleConsoleConstructor>
     elements: InstanceType<ElementsConstructor>
     info: InstanceType<InfoConstructor>
     network: InstanceType<NetworkConstructor>
@@ -432,16 +432,16 @@ declare module 'eruda' {
   }
 
   /**
-   * Eruda APIs
-   * @see https://eruda.liriliri.io/docs/api.html
+   * wtConsole APIs
+   * @see https://wtConsole.liriliri.io/docs/api.html
    */
-  export interface ErudaApis {
+  export interface wtConsoleApis {
     /**
-     * Initialize eruda.
+     * Initialize wtConsole.
      */
     init(options?: InitOptions): void
     /**
-     * Destory eruda.
+     * Destory wtConsole.
      * Note: You can call `init` method again after destruction.
      */
     destroy(): void
@@ -449,13 +449,13 @@ declare module 'eruda' {
      * Set or get scale.
      */
     scale(): number
-    scale(s: number): Eruda
+    scale(s: number): wtConsole
     /**
      * Set or get entry button position.
      * It will not take effect if given pos is out of range.
      */
     position(): Position
-    position(p: Position): Eruda
+    position(p: Position): wtConsole
     /**
      * Get tool, eg. console, elements panels.
      */
@@ -466,27 +466,27 @@ declare module 'eruda' {
      * Add tool.
      */
     add<T extends ToolConstructor>(
-      tool: InstanceType<T> | ((eruda: Eruda) => InstanceType<T>)
-    ): Eruda | undefined
+      tool: InstanceType<T> | ((wtConsole: wtConsole) => InstanceType<T>)
+    ): wtConsole | undefined
     /**
      * Remove tool.
      */
-    remove(name: string): Eruda | undefined
+    remove(name: string): wtConsole | undefined
     /**
-     * Show eruda panel.
+     * Show wtConsole panel.
      */
-    show(name?: string): Eruda | undefined
+    show(name?: string): wtConsole | undefined
     /**
-     * Hide eruda panel.
+     * Hide wtConsole panel.
      */
-    hide(): Eruda | undefined
+    hide(): wtConsole | undefined
   }
 
-  export interface Eruda extends ErudaApis {
+  export interface wtConsole extends wtConsoleApis {
     /**
      * Display console logs. Implementation detail follows the console api spec.
      */
-    Console: ErudaConsoleConstructor
+    Console: wtConsoleConsoleConstructor
     /**
      * Check dom element status.
      */
@@ -517,20 +517,20 @@ declare module 'eruda' {
      */
     Sources: SourcesConstructor
     /**
-     * Eruda Tool
+     * wtConsole Tool
      */
     Tool: ToolConstructor
     /**
-     * Eruda Util
+     * wtConsole Util
      */
     util: Util
     /**
-     * Eruda version
+     * wtConsole version
      */
     readonly version: string
   }
 
-  const eruda: Eruda
+  const wtConsole: wtConsole
 
-  export default eruda
+  export default wtConsole
 }

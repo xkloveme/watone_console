@@ -61,7 +61,7 @@ export default class Snippets extends Tool {
   _bindEvent() {
     const self = this
 
-    this._$el.on('click', '.eruda-run', function () {
+    this._$el.on('click', '.wtConsole-run', function () {
       const idx = $(this).data('idx')
 
       self._run(idx)

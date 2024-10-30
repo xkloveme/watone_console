@@ -10,7 +10,7 @@ import toNum from 'licia/toNum'
 import copy from 'licia/copy'
 import isMobile from 'licia/isMobile'
 import LunaDomViewer from 'luna-dom-viewer'
-import { isErudaEl, classPrefix as c, isChobitsuEl } from '../lib/util'
+import { iswtConsoleEl, classPrefix as c, isChobitsuEl } from '../lib/util'
 import evalCss from '../lib/evalCss'
 import Detail from './Detail'
 import chobitsu from '../lib/chobitsu'
@@ -43,7 +43,7 @@ export default class Elements extends Tool {
     this._splitMode = this._splitMediaQuery.isMatch()
     this._domViewer = new LunaDomViewer(this._$domViewer.get(0), {
       node: this._htmlEl,
-      ignore: (node) => isErudaEl(node) || isChobitsuEl(node),
+      ignore: (node) => iswtConsoleEl(node) || isChobitsuEl(node),
     })
     this._domViewer.expand()
     this._bindEvent()

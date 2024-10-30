@@ -30,7 +30,7 @@ module.exports = function (config) {
       'test/snippets.js',
       'test/sources.js',
       'test/settings.js',
-      'test/eruda.js',
+      'test/wtConsole.js',
     ],
     plugins: [
       'karma-jasmine',

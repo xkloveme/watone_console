@@ -24,7 +24,7 @@ import LunaModal from 'luna-modal'
 import LunaBoxModel from 'luna-box-model'
 import chobitsu from '../lib/chobitsu'
 import { formatNodeName } from './util'
-import { isErudaEl, classPrefix as c } from '../lib/util'
+import { iswtConsoleEl, classPrefix as c } from '../lib/util'
 
 export default class Detail {
   constructor($container, devtools) {
@@ -254,7 +254,7 @@ export default class Detail {
     ret.attributes = formatAttr(attributes)
     ret.name = formatNodeName({ tagName, id, className, attributes })
 
-    const events = el.erudaEvents
+    const events = el.wtConsoleEvents
     if (events && keys(events).length !== 0) ret.listeners = events
 
     if (needNoStyle(tagName)) return ret
@@ -299,7 +299,7 @@ export default class Detail {
           this._render()
         })
       })
-      .on('click', '.eruda-listener-content', function () {
+      .on('click', '.wtConsole-listener-content', function () {
         const text = $(this).text()
         const sources = devtools.get('sources')
 
@@ -338,7 +338,7 @@ export default class Detail {
     this._observer.disconnect()
   }
   _handleMutation(mutation) {
-    if (isErudaEl(mutation.target)) return
+    if (iswtConsoleEl(mutation.target)) return
 
     if (mutation.type === 'attributes') {
       if (mutation.target !== this._curEl) return
@@ -410,7 +410,7 @@ function processStyleRule(val) {
   return val
     .replace(
       regColor,
-      '<span class="eruda-style-color" style="background-color: $&"></span>$&'
+      '<span class="wtConsole-style-color" style="background-color: $&"></span>$&'
     )
     .replace(regCssUrl, (match, url) => `url("${wrapLink(url)}")`)
 }
@@ -458,7 +458,7 @@ const wrapLink = (link) => `<a href="${link}" target="_blank">${link}</a>`
 function addEvent(el, type, listener, useCapture = false) {
   if (!isEl(el) || !isFn(listener) || !isBool(useCapture)) return
 
-  const events = (el.erudaEvents = el.erudaEvents || {})
+  const events = (el.wtConsoleEvents = el.wtConsoleEvents || {})
 
   events[type] = events[type] || []
   events[type].push({
@@ -471,7 +471,7 @@ function addEvent(el, type, listener, useCapture = false) {
 function rmEvent(el, type, listener, useCapture = false) {
   if (!isEl(el) || !isFn(listener) || !isBool(useCapture)) return
 
-  const events = el.erudaEvents
+  const events = el.wtConsoleEvents
 
   if (!(events && events[type])) return
 
@@ -485,7 +485,7 @@ function rmEvent(el, type, listener, useCapture = false) {
   }
 
   if (listeners.length === 0) delete events[type]
-  if (keys(events).length === 0) delete el.erudaEvents
+  if (keys(events).length === 0) delete el.wtConsoleEvents
 }
 
 const getWinEventProto = () => {

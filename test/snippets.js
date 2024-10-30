@@ -1,13 +1,13 @@
 describe('snippets', function () {
-  let tool = eruda.get('snippets')
-  let $tool = $('.eruda-snippets')
+  let tool = wtConsole.get('snippets')
+  let $tool = $('.wtConsole-snippets')
 
   describe('default', function () {
     it('border all', function () {
-      expect($tool.find('.eruda-name').eq(0)).toContainText('Border All')
+      expect($tool.find('.wtConsole-name').eq(0)).toContainText('Border All')
 
       let $body = $('body')
-      let $btn = $tool.find('.eruda-run').eq(0)
+      let $btn = $tool.find('.wtConsole-run').eq(0)
 
       $btn.click()
       expect($body).toHaveCss({ outlineWidth: '2px' })
@@ -16,18 +16,18 @@ describe('snippets', function () {
     })
 
     it('refresh page', function () {
-      expect($tool.find('.eruda-name').eq(1)).toContainText('Refresh Page')
+      expect($tool.find('.wtConsole-name').eq(1)).toContainText('Refresh Page')
     })
 
     it('search text', function () {
-      expect($tool.find('.eruda-name').eq(2)).toContainText('Search Text')
+      expect($tool.find('.wtConsole-name').eq(2)).toContainText('Search Text')
     })
 
     it('edit page', function () {
-      expect($tool.find('.eruda-name').eq(3)).toContainText('Edit Page')
+      expect($tool.find('.wtConsole-name').eq(3)).toContainText('Edit Page')
 
       let $body = $('body')
-      let $btn = $tool.find('.eruda-run').eq(3)
+      let $btn = $tool.find('.wtConsole-run').eq(3)
 
       $btn.click()
       expect($body).toHaveAttr('contenteditable', 'true')
@@ -38,25 +38,25 @@ describe('snippets', function () {
 
   it('clear', function () {
     tool.clear()
-    expect($tool.find('.eruda-name')).toHaveLength(0)
+    expect($tool.find('.wtConsole-name')).toHaveLength(0)
   })
 
   it('add', function () {
     tool.add(
       'Test',
       function () {
-        console.log('eruda')
+        console.log('wtConsole')
       },
       'This is the description'
     )
-    expect($tool.find('.eruda-name')).toContainText('Test')
-    expect($tool.find('.eruda-description')).toContainText(
+    expect($tool.find('.wtConsole-name')).toContainText('Test')
+    expect($tool.find('.wtConsole-description')).toContainText(
       'This is the description'
     )
   })
 
   it('remove', function () {
     tool.remove('Test')
-    expect($tool.find('.eruda-name')).toHaveLength(0)
+    expect($tool.find('.wtConsole-name')).toHaveLength(0)
   })
 })
