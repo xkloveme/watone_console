@@ -198,7 +198,7 @@ function traverse(root, processor) {
 }
 
 function loadPlugin(name) {
-  const globalName = 'eruda' + upperFirst(name)
+  const globalName = 'wtConsole' + upperFirst(name)
   if (window[globalName]) return
 
   let protocol = location.protocol
