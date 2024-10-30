@@ -1,6 +1,6 @@
 {
   "name": "@watone/console",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Watone Console for Mobile Browsers",
   "main": "wtConsole.js",
   "browserslist": [
