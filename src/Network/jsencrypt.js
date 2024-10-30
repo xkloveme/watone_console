@@ -1,4 +1,4 @@
-import { SM4 } from 'gm-crypto'
+import { sm4 } from "jxk";
 
 // @ts-ignore
 // const SM4Key = window.storageKey || 'b854a476bb97a0e9a9a4b214b2c6558a'
@@ -8,12 +8,9 @@ export function encrypt(originalData, SM4Key) {
     return originalData
   }
   try {
-    return SM4.encrypt(originalData + '', SM4Key, {
-      inputEncoding: 'utf8',
-      outputEncoding: 'hex',
-    })
+    return SM4Key ? sm4.encrypt(originalData+'', SM4Key) : originalData;
   } catch (error) {
-    console.error('🐛: ~ encrypt ~ error:', originalData, error)
+    return originalData;
   }
 }
 
@@ -23,13 +20,9 @@ export function decrypt(encryptedData, SM4Key) {
     return encryptedData
   }
   try {
-    const decryptedData = SM4.decrypt(encryptedData, SM4Key, {
-      inputEncoding: 'hex',
-      outputEncoding: 'utf8',
-    })
-    return decryptedData
+    return SM4Key ? sm4.decrypt(encryptedData, SM4Key) : encryptedData;
   } catch (error) {
-    return encryptedData
+    return encryptedData;
   }
 }
 
